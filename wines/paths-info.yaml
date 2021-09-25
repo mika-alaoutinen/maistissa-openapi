@@ -1,0 +1,58 @@
+WinesCountries:
+  get:
+    summary: Get list of distinct countries.
+    description: Returns list of all distinct countries found in all wines.
+    operationId: findWineCountries
+    tags: [Wines info]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+
+WinesDescriptions:
+  get:
+    summary: Get list of distinct wine descriptions.
+    description: Returns list of all distinct wine descriptions found as wine attributes.
+    operationId: findWineDescriptions
+    tags: [Wines info]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                
+WinesFoodPairings:
+  get:
+    summary: Get list of distinct food pairings.
+    description: Returns list of all distinct wine-food pairings found as wine attributes.
+    operationId: findWineFoodPairings
+    tags: [Wines info]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+
+# This should be a POST
+ValidateName:
+  get:
+    summary: Validate wine's name.
+    description: Check that wine's name is unique. TODO change to POST.
+    operationId: validateName
+    tags: [Wines info]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: boolean

@@ -1,0 +1,35 @@
+ErrorBody:
+  description: A generic error response.
+  type: object
+  properties:
+    timestamp:
+      type: string
+      format: datetime
+    status:
+      type: integer
+    error:
+      type: string
+    path:
+      type: string
+
+# Error responses
+BadRequest:
+  description: HTTP 400. Request body was malformed.
+  content:
+    application/json:
+      schema:
+        $ref: "#/ErrorBody"
+
+Unauthorized:
+  description: HTTP 401. Request was unauthorized.
+  content:
+    application/json:
+      schema:
+        $ref: "#/ErrorBody"
+
+NotFound:
+  description: HTTP 404. Could not find resource with given id.
+  content:
+    application/json:
+      schema:
+        $ref: "#/ErrorBody"

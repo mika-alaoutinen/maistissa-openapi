@@ -1,0 +1,76 @@
+# CRUD operations
+Wines:
+  get:
+    summary: Get all wines.
+    description: Returns all wines ordered alphabetically by name.
+    operationId: findAllWines
+    tags: [Wines CRUD]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ./schemas.yaml#/Wine
+
+  post:
+    summary: Add new wine.
+    description: Add new wine.
+    operationId: addWine
+    tags: [Wines CRUD]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/Wine
+      required: true
+    responses:
+      201:
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Wine
+      400:
+        $ref: ../common/errors.yaml#/BadRequest
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+
+Wine:
+  get:
+    summary: Get a single wine.
+    description: Get a single wine.
+    operationId: findWine
+    tags: [Wines CRUD]
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Wine
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+  put:
+    summary: Update wine.
+    description: Update wine.
+    operationId: updateWine
+    tags: [Wines CRUD]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/Wine
+      required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Wine
+      400:
+        $ref: ../common/errors.yaml#/BadRequest
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound

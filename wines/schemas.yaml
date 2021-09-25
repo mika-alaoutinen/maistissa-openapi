@@ -1,0 +1,38 @@
+Wine:
+  description: A wine resource.
+  type: object
+  properties:
+    id:
+      type: integer
+      minimum: 1
+    name:
+      type: string
+      minLength: 1
+    type:
+      type: string
+      enum: [RED, ROSE, WHITE, SPARKLING, OTHER]
+    country:
+      type: string
+      minLength: 1
+    price:
+      type: number
+      minimum: 0
+    volume:
+      type: number
+      minimum: 0
+    description:
+      description: Wine's description contains a list of keywords or phrases.
+      type: array
+      items:
+        type: string
+      minLength: 0
+    foodPairings:
+      description: Food pairing recommendations.
+      type: array
+      items:
+        type: string
+      minLength: 0
+    url:
+      description: Link to external resource about the wine.
+      type: string
+      format: url

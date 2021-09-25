@@ -1,0 +1,37 @@
+openapi: '3.0.3'
+
+info:
+  title: Maistissa backend
+  version: '1.1.0'
+
+servers:
+  - url: http://localhost:8082/api
+
+tags:
+- name: Wines CRUD
+  description: CRUD operations for wines.
+- name: Wines info
+  description: Other functionality, like searching wines and retrieving keyword lists.
+
+paths:
+  # Wines CRUD operations
+  /wines:
+    $ref: ./wines/paths-crud.yaml#/Wines
+  /wines/{id}:
+    $ref: ./wines/paths-crud.yaml#/Wine
+  # Wines info operations
+  /wines/countries:
+    $ref: ./wines/paths-info.yaml#/WinesCountries
+  /wines/descriptions:
+    $ref: ./wines/paths-info.yaml#/WinesDescriptions
+  /wines/food-pairings:
+    $ref: ./wines/paths-info.yaml#/WinesFoodPairings
+  /wines/validate:
+    $ref: ./wines/paths-info.yaml#/ValidateName
+  
+components:
+  schemas:
+    Wine:
+      $ref: ./wines/schemas.yaml#/Wine
+    Error:
+      $ref: ./common/errors.yaml#/ErrorBody
