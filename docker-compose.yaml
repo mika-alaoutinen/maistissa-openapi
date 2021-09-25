@@ -6,4 +6,4 @@ services:
     image: openapitools/openapi-generator-cli
     volumes:
       - ./openapi:/openapi
-      - ./generated:/generated
+      - ./openapi.json:/generated/openapi.json # Copy only the api-doc json file

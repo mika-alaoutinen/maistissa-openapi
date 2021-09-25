@@ -1,0 +1,350 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Maistissa backend",
+    "version" : "1.1.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8082/api"
+  } ],
+  "tags" : [ {
+    "description" : "CRUD operations for wines.",
+    "name" : "Wines CRUD"
+  }, {
+    "description" : "Other functionality, like searching wines and retrieving keyword lists.",
+    "name" : "Wines info"
+  } ],
+  "paths" : {
+    "/wines" : {
+      "get" : {
+        "description" : "Returns all wines ordered alphabetically by name.",
+        "operationId" : "findAllWines",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Wine"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched all wines."
+          }
+        },
+        "summary" : "Get all wines.",
+        "tags" : [ "Wines CRUD" ]
+      },
+      "post" : {
+        "description" : "Add new wine.",
+        "operationId" : "addWine",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Wine"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Wine"
+                }
+              }
+            },
+            "description" : "Created new wine."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 400. Request body was malformed."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          }
+        },
+        "summary" : "Add new wine.",
+        "tags" : [ "Wines CRUD" ]
+      }
+    },
+    "/wines/{id}" : {
+      "get" : {
+        "description" : "Get a single wine.",
+        "operationId" : "findWine",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Wine"
+                }
+              }
+            },
+            "description" : "Found wine with given ID."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Get a single wine.",
+        "tags" : [ "Wines CRUD" ]
+      },
+      "parameters" : [ {
+        "description" : "Wine ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ],
+      "put" : {
+        "description" : "Update wine.",
+        "operationId" : "updateWine",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Wine"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Wine"
+                }
+              }
+            },
+            "description" : "Successfully updated wine."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 400. Request body was malformed."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Update wine.",
+        "tags" : [ "Wines CRUD" ]
+      }
+    },
+    "/wines/countries" : {
+      "get" : {
+        "description" : "Returns list of all distinct countries found in all wines.",
+        "operationId" : "findWineCountries",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched list of countries."
+          }
+        },
+        "summary" : "Get list of distinct countries.",
+        "tags" : [ "Wines info" ]
+      }
+    },
+    "/wines/descriptions" : {
+      "get" : {
+        "description" : "Returns list of all distinct wine descriptions found as wine attributes.",
+        "operationId" : "findWineDescriptions",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched list of wine descriptions."
+          }
+        },
+        "summary" : "Get list of distinct wine descriptions.",
+        "tags" : [ "Wines info" ]
+      }
+    },
+    "/wines/food-pairings" : {
+      "get" : {
+        "description" : "Returns list of all distinct wine-food pairings found as wine attributes.",
+        "operationId" : "findWineFoodPairings",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched list of wine-food pairings."
+          }
+        },
+        "summary" : "Get list of distinct food pairings.",
+        "tags" : [ "Wines info" ]
+      }
+    },
+    "/wines/validate" : {
+      "get" : {
+        "description" : "Check that wine's name is unique. TODO change to POST.",
+        "operationId" : "validateName",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "boolean"
+                }
+              }
+            },
+            "description" : "Checked if wine's name is unique."
+          }
+        },
+        "summary" : "Validate wine's name.",
+        "tags" : [ "Wines info" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Wine" : {
+        "description" : "A wine resource.",
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "name" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "RED", "ROSE", "WHITE", "SPARKLING", "OTHER" ],
+            "type" : "string"
+          },
+          "country" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "price" : {
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "volume" : {
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "description" : {
+            "description" : "Wine's description contains a list of keywords or phrases.",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 0,
+            "type" : "array"
+          },
+          "foodPairings" : {
+            "description" : "Food pairing recommendations.",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 0,
+            "type" : "array"
+          },
+          "url" : {
+            "description" : "Link to external resource about the wine.",
+            "format" : "url",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ErrorBody" : {
+        "description" : "A generic error response.",
+        "properties" : {
+          "timestamp" : {
+            "format" : "datetime",
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "integer"
+          },
+          "error" : {
+            "type" : "string"
+          },
+          "path" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}
