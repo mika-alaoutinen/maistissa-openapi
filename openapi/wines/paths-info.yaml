@@ -6,6 +6,7 @@ WinesCountries:
     tags: [Wines info]
     responses:
       200:
+        description: Fetched list of countries.
         content:
           application/json:
             schema:
@@ -21,6 +22,7 @@ WinesDescriptions:
     tags: [Wines info]
     responses:
       200:
+        description: Fetched list of wine descriptions.
         content:
           application/json:
             schema:
@@ -36,6 +38,7 @@ WinesFoodPairings:
     tags: [Wines info]
     responses:
       200:
+        description: Fetched list of wine-food pairings.
         content:
           application/json:
             schema:
@@ -52,6 +55,7 @@ ValidateName:
     tags: [Wines info]
     responses:
       200:
+        description: Checked if wine's name is unique.
         content:
           application/json:
             schema:

@@ -2,7 +2,8 @@ version: "3.8"
 
 services:
   openapi-generator:
-    command: generate -i /openapi/openapi.yaml -g openapi -o ./openapi
+    command: generate -i /openapi/openapi.yaml -g openapi -o ./generated
     image: openapitools/openapi-generator-cli
     volumes:
       - ./openapi:/openapi
+      - ./generated:/generated

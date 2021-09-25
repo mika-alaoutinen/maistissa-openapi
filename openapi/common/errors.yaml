@@ -12,23 +12,28 @@ ErrorBody:
     path:
       type: string
 
+# Must use an explicit path to this file or openapi-generator-cli breaks down.
+# I.e. can't use ref "#/ErrorBody".
 BadRequest:
   description: HTTP 400. Request body was malformed.
+  type: object
   content:
     application/json:
       schema:
-        $ref: "#/ErrorBody"
+        $ref: "./errors.yaml#/ErrorBody"
 
 Unauthorized:
   description: HTTP 401. Request was unauthorized.
+  type: object
   content:
     application/json:
       schema:
-        $ref: "#/ErrorBody"
+        $ref: "./errors.yaml#/ErrorBody"
 
 NotFound:
   description: HTTP 404. Could not find resource with given id.
+  type: object
   content:
     application/json:
       schema:
-        $ref: "#/ErrorBody"
+        $ref: "./errors.yaml#/ErrorBody"

@@ -30,16 +30,8 @@ paths:
     $ref: ./wines/paths-info.yaml#/ValidateName
   
 components:
-  responses:
-    BadRequest:
-      $ref: ./common/errors.yaml#/BadRequest
-    NotFound:
-      $ref: ./common/errors.yaml#/NotFound
-    Unauthorized:
-      $ref: ./common/errors.yaml#/Unauthorized
-
   schemas:
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
-    Error:
+    ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
