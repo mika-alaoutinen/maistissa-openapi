@@ -2,7 +2,7 @@ Wines:
   get:
     summary: Get all wines.
     description: Returns all wines ordered alphabetically by name.
-    operationId: findAllWines
+    operationId: findAll
     tags: [Wines CRUD]
     responses:
       200:
@@ -17,7 +17,7 @@ Wines:
   post:
     summary: Add new wine.
     description: Add new wine.
-    operationId: addWine
+    operationId: add
     tags: [Wines CRUD]
     requestBody:
       content:
@@ -49,7 +49,7 @@ Wine:
   get:
     summary: Get a single wine.
     description: Get a single wine.
-    operationId: findWine
+    operationId: find
     tags: [Wines CRUD]
     responses:
       200:
@@ -64,7 +64,7 @@ Wine:
   put:
     summary: Update wine.
     description: Update wine.
-    operationId: updateWine
+    operationId: update
     tags: [Wines CRUD]
     requestBody:
       content:

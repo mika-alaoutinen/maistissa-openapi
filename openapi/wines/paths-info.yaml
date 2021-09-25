@@ -2,7 +2,7 @@ WinesCountries:
   get:
     summary: Get list of distinct countries.
     description: Returns list of all distinct countries found in all wines.
-    operationId: findWineCountries
+    operationId: findCountries
     tags: [Wines info]
     responses:
       200:
@@ -18,7 +18,7 @@ WinesDescriptions:
   get:
     summary: Get list of distinct wine descriptions.
     description: Returns list of all distinct wine descriptions found as wine attributes.
-    operationId: findWineDescriptions
+    operationId: findDescriptions
     tags: [Wines info]
     responses:
       200:
@@ -34,7 +34,7 @@ WinesFoodPairings:
   get:
     summary: Get list of distinct food pairings.
     description: Returns list of all distinct wine-food pairings found as wine attributes.
-    operationId: findWineFoodPairings
+    operationId: findFoodPairings
     tags: [Wines info]
     responses:
       200:
