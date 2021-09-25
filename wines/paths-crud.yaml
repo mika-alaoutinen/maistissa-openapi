@@ -37,6 +37,14 @@ Wines:
         $ref: ../common/errors.yaml#/Unauthorized
 
 Wine:
+  parameters:
+  - in: path
+    name: id
+    description: Wine ID.
+    required: true
+    schema:
+      type: integer
+
   get:
     summary: Get a single wine.
     description: Get a single wine.

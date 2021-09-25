@@ -12,7 +12,6 @@ ErrorBody:
     path:
       type: string
 
-# Error responses
 BadRequest:
   description: HTTP 400. Request body was malformed.
   content:
