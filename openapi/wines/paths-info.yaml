@@ -3,7 +3,7 @@ WinesCountries:
     summary: Get list of distinct countries.
     description: Returns list of all distinct countries found in all wines.
     operationId: findCountries
-    tags: [Wines info]
+    tags: [wines-info]
     responses:
       200:
         description: Fetched list of countries.
@@ -19,7 +19,7 @@ WinesDescriptions:
     summary: Get list of distinct wine descriptions.
     description: Returns list of all distinct wine descriptions found as wine attributes.
     operationId: findDescriptions
-    tags: [Wines info]
+    tags: [wines-info]
     responses:
       200:
         description: Fetched list of wine descriptions.
@@ -35,7 +35,7 @@ WinesFoodPairings:
     summary: Get list of distinct food pairings.
     description: Returns list of all distinct wine-food pairings found as wine attributes.
     operationId: findFoodPairings
-    tags: [Wines info]
+    tags: [wines-info]
     responses:
       200:
         description: Fetched list of wine-food pairings.
@@ -52,7 +52,7 @@ ValidateName:
     summary: Validate wine's name.
     description: Check that wine's name is unique. TODO change to POST.
     operationId: validateName
-    tags: [Wines info]
+    tags: [wines-info]
     responses:
       200:
         description: Checked if wine's name is unique.

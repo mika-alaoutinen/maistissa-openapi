@@ -8,9 +8,9 @@ servers:
   - url: http://localhost:8082/api
 
 tags:
-- name: Wines CRUD
+- name: wines-crud
   description: CRUD operations for wines.
-- name: Wines info
+- name: wines-info
   description: Other functionality, like searching wines and retrieving keyword lists.
 
 paths:

@@ -3,7 +3,7 @@ Wines:
     summary: Get all wines.
     description: Returns all wines ordered alphabetically by name.
     operationId: findAll
-    tags: [Wines CRUD]
+    tags: [wines-crud]
     responses:
       200:
         description: Fetched all wines.
@@ -18,7 +18,7 @@ Wines:
     summary: Add new wine.
     description: Add new wine.
     operationId: add
-    tags: [Wines CRUD]
+    tags: [wines-crud]
     requestBody:
       content:
         application/json:
@@ -50,7 +50,7 @@ Wine:
     summary: Get a single wine.
     description: Get a single wine.
     operationId: find
-    tags: [Wines CRUD]
+    tags: [wines-crud]
     responses:
       200:
         description: Found wine with given ID.
@@ -65,7 +65,7 @@ Wine:
     summary: Update wine.
     description: Update wine.
     operationId: update
-    tags: [Wines CRUD]
+    tags: [wines-crud]
     requestBody:
       content:
         application/json:
