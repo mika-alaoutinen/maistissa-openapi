@@ -1,0 +1,53 @@
+WineSearch:
+  parameters:
+  - in: query
+    name: name
+    description: Wine name.
+    schema:
+      type: string
+  - in: query
+    name: type
+    description: Wine type.
+    schema:
+      type: string
+      enum: [RED, ROSE, WHITE, SPARKLING, OTHER]
+  - in: query
+    name: countries
+    description: List of countries.
+    schema:
+      type: array
+      items:
+        type: string
+      minLength: 1
+  - in: query
+    name: volumes
+    description: List of volumes (i.e. wine's package size).
+    schema:
+      type: array
+      items:
+        type: number
+      minimum: 0
+  - in: query
+    name: priceRange
+    description: Desired price range, given as [min, max]. Must have exactly two values.
+    schema:
+      type: array
+      items:
+        type: number
+      minimum: 2
+      maximum: 2
+
+  get:
+    summary: Search wines.
+    description: Search for wines based on their name, type, countries, volumes and prices.
+    operationId: search
+    tags: [wines-search]
+    responses:
+      200:
+        description: Fetched wines that meet the search criteria.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ./schemas.yaml#/Wine

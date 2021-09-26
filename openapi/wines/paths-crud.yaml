@@ -2,8 +2,8 @@ Wines:
   get:
     summary: Get all wines.
     description: Returns all wines ordered alphabetically by name.
-    operationId: findAllWines
-    tags: [Wines CRUD]
+    operationId: findAll
+    tags: [wines-crud]
     responses:
       200:
         description: Fetched all wines.
@@ -17,8 +17,8 @@ Wines:
   post:
     summary: Add new wine.
     description: Add new wine.
-    operationId: addWine
-    tags: [Wines CRUD]
+    operationId: add
+    tags: [wines-crud]
     requestBody:
       content:
         application/json:
@@ -49,8 +49,8 @@ Wine:
   get:
     summary: Get a single wine.
     description: Get a single wine.
-    operationId: findWine
-    tags: [Wines CRUD]
+    operationId: find
+    tags: [wines-crud]
     responses:
       200:
         description: Found wine with given ID.
@@ -63,9 +63,9 @@ Wine:
 
   put:
     summary: Update wine.
-    description: Update wine.
-    operationId: updateWine
-    tags: [Wines CRUD]
+    description: Update a single wine.
+    operationId: update
+    tags: [wines-crud]
     requestBody:
       content:
         application/json:
@@ -83,5 +83,42 @@ Wine:
         $ref: ../common/errors.yaml#/BadRequest
       401:
         $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+  delete:
+    summary: Delete wine.
+    description: Delete a single wine.
+    operationId: delete
+    tags: [wines-crud]
+    responses:
+      204:
+        description: Successfully deleted wine.
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+WineEditable:
+  parameters:
+  - in: path
+    name: id
+    description: Wine ID.
+    required: true
+    schema:
+      type: integer    
+
+  get:
+    summary: Get a single wine.
+    description: Get a single wine.
+    operationId: isEditable
+    tags: [wines-crud]
+    responses:
+      200:
+        description: Boolean indicating if wine can be edited by user.
+        content:
+          application/json:
+            schema:
+              type: boolean
       404:
         $ref: ../common/errors.yaml#/NotFound

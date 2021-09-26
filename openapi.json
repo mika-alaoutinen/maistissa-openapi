@@ -9,16 +9,19 @@
   } ],
   "tags" : [ {
     "description" : "CRUD operations for wines.",
-    "name" : "Wines CRUD"
+    "name" : "wines-crud"
   }, {
-    "description" : "Other functionality, like searching wines and retrieving keyword lists.",
-    "name" : "Wines info"
+    "description" : "Operations for finding information regarding wines.",
+    "name" : "wines-info"
+  }, {
+    "description" : "Wine search functionality.",
+    "name" : "wines-search"
   } ],
   "paths" : {
     "/wines" : {
       "get" : {
         "description" : "Returns all wines ordered alphabetically by name.",
-        "operationId" : "findAllWines",
+        "operationId" : "findAll",
         "responses" : {
           "200" : {
             "content" : {
@@ -35,11 +38,11 @@
           }
         },
         "summary" : "Get all wines.",
-        "tags" : [ "Wines CRUD" ]
+        "tags" : [ "wines-crud" ]
       },
       "post" : {
         "description" : "Add new wine.",
-        "operationId" : "addWine",
+        "operationId" : "add",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -83,13 +86,44 @@
           }
         },
         "summary" : "Add new wine.",
-        "tags" : [ "Wines CRUD" ]
+        "tags" : [ "wines-crud" ]
       }
     },
     "/wines/{id}" : {
+      "delete" : {
+        "description" : "Delete a single wine.",
+        "operationId" : "delete",
+        "responses" : {
+          "204" : {
+            "description" : "Successfully deleted wine."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Delete wine.",
+        "tags" : [ "wines-crud" ]
+      },
       "get" : {
         "description" : "Get a single wine.",
-        "operationId" : "findWine",
+        "operationId" : "find",
         "responses" : {
           "200" : {
             "content" : {
@@ -113,7 +147,7 @@
           }
         },
         "summary" : "Get a single wine.",
-        "tags" : [ "Wines CRUD" ]
+        "tags" : [ "wines-crud" ]
       },
       "parameters" : [ {
         "description" : "Wine ID.",
@@ -125,8 +159,8 @@
         }
       } ],
       "put" : {
-        "description" : "Update wine.",
-        "operationId" : "updateWine",
+        "description" : "Update a single wine.",
+        "operationId" : "update",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -180,13 +214,72 @@
           }
         },
         "summary" : "Update wine.",
-        "tags" : [ "Wines CRUD" ]
+        "tags" : [ "wines-crud" ]
+      }
+    },
+    "/wines/{id}/editable" : {
+      "get" : {
+        "description" : "Get a single wine.",
+        "operationId" : "isEditable",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "boolean"
+                }
+              }
+            },
+            "description" : "Boolean indicating if wine can be edited by user."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Get a single wine.",
+        "tags" : [ "wines-crud" ]
+      },
+      "parameters" : [ {
+        "description" : "Wine ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/wines/count" : {
+      "get" : {
+        "description" : "Returns total count of wines in the application.",
+        "operationId" : "count",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "description" : "Fetched wine count."
+          }
+        },
+        "summary" : "Get wine count.",
+        "tags" : [ "wines-info" ]
       }
     },
     "/wines/countries" : {
       "get" : {
         "description" : "Returns list of all distinct countries found in all wines.",
-        "operationId" : "findWineCountries",
+        "operationId" : "findCountries",
         "responses" : {
           "200" : {
             "content" : {
@@ -203,13 +296,13 @@
           }
         },
         "summary" : "Get list of distinct countries.",
-        "tags" : [ "Wines info" ]
+        "tags" : [ "wines-info" ]
       }
     },
     "/wines/descriptions" : {
       "get" : {
         "description" : "Returns list of all distinct wine descriptions found as wine attributes.",
-        "operationId" : "findWineDescriptions",
+        "operationId" : "findDescriptions",
         "responses" : {
           "200" : {
             "content" : {
@@ -226,13 +319,13 @@
           }
         },
         "summary" : "Get list of distinct wine descriptions.",
-        "tags" : [ "Wines info" ]
+        "tags" : [ "wines-info" ]
       }
     },
     "/wines/food-pairings" : {
       "get" : {
         "description" : "Returns list of all distinct wine-food pairings found as wine attributes.",
-        "operationId" : "findWineFoodPairings",
+        "operationId" : "findFoodPairings",
         "responses" : {
           "200" : {
             "content" : {
@@ -249,7 +342,7 @@
           }
         },
         "summary" : "Get list of distinct food pairings.",
-        "tags" : [ "Wines info" ]
+        "tags" : [ "wines-info" ]
       }
     },
     "/wines/validate" : {
@@ -269,8 +362,81 @@
           }
         },
         "summary" : "Validate wine's name.",
-        "tags" : [ "Wines info" ]
+        "tags" : [ "wines-info" ]
       }
+    },
+    "/wines/search" : {
+      "get" : {
+        "description" : "Search for wines based on their name, type, countries, volumes and prices.",
+        "operationId" : "search",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Wine"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched wines that meet the search criteria."
+          }
+        },
+        "summary" : "Search wines.",
+        "tags" : [ "wines-search" ]
+      },
+      "parameters" : [ {
+        "description" : "Wine name.",
+        "in" : "query",
+        "name" : "name",
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "description" : "Wine type.",
+        "in" : "query",
+        "name" : "type",
+        "schema" : {
+          "enum" : [ "RED", "ROSE", "WHITE", "SPARKLING", "OTHER" ],
+          "type" : "string"
+        }
+      }, {
+        "description" : "List of countries.",
+        "in" : "query",
+        "name" : "countries",
+        "schema" : {
+          "items" : {
+            "type" : "string"
+          },
+          "minLength" : 1,
+          "type" : "array"
+        }
+      }, {
+        "description" : "List of volumes (i.e. wine's package size).",
+        "in" : "query",
+        "name" : "volumes",
+        "schema" : {
+          "items" : {
+            "type" : "number"
+          },
+          "minimum" : 0,
+          "type" : "array"
+        }
+      }, {
+        "description" : "Desired price range, given as [min, max]. Must have exactly two values.",
+        "in" : "query",
+        "name" : "priceRange",
+        "schema" : {
+          "items" : {
+            "type" : "number"
+          },
+          "maximum" : 2,
+          "minimum" : 2,
+          "type" : "array"
+        }
+      } ]
     }
   },
   "components" : {
