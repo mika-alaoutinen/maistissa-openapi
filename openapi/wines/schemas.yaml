@@ -9,7 +9,8 @@ Wine:
       type: string
       minLength: 1
     type:
-      $ref: ./schemas.yaml#/WineType
+      type: string
+      enum: [RED, ROSE, WHITE, SPARKLING, OTHER]
     country:
       type: string
       minLength: 1
@@ -35,8 +36,3 @@ Wine:
       description: Link to external resource about the wine.
       type: string
       format: url
-
-WineType:
-  description: Wine's type, given as String enum.
-  type: string
-  enum: [RED, ROSE, WHITE, SPARKLING, OTHER]

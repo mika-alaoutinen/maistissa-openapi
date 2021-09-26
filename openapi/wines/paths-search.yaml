@@ -9,7 +9,8 @@ WineSearch:
     name: type
     description: Wine type.
     schema:
-      $ref: ./schemas.yaml#/WineType
+      type: string
+      enum: [RED, ROSE, WHITE, SPARKLING, OTHER]
   - in: query
     name: countries
     description: List of countries.

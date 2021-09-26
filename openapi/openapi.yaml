@@ -44,7 +44,5 @@ components:
   schemas:
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
-    WineType:
-      $ref: ./wines/schemas.yaml#/WineType
     ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
