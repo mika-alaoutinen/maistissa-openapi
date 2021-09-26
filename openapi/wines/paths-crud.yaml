@@ -98,3 +98,27 @@ Wine:
         $ref: ../common/errors.yaml#/Unauthorized
       404:
         $ref: ../common/errors.yaml#/NotFound
+
+WineEditable:
+  parameters:
+  - in: path
+    name: id
+    description: Wine ID.
+    required: true
+    schema:
+      type: integer    
+
+  get:
+    summary: Get a single wine.
+    description: Get a single wine.
+    operationId: isEditable
+    tags: [wines-crud]
+    responses:
+      200:
+        description: Boolean indicating if wine can be edited by user.
+        content:
+          application/json:
+            schema:
+              type: boolean
+      404:
+        $ref: ../common/errors.yaml#/NotFound

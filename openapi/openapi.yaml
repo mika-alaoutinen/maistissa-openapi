@@ -11,7 +11,9 @@ tags:
 - name: wines-crud
   description: CRUD operations for wines.
 - name: wines-info
-  description: Other functionality, like searching wines and retrieving keyword lists.
+  description: Operations for finding information regarding wines.
+- name: wines-search
+  description: Wine search functionality.
 
 paths:
   # Wines CRUD operations
@@ -19,6 +21,9 @@ paths:
     $ref: ./wines/paths-crud.yaml#/Wines
   /wines/{id}:
     $ref: ./wines/paths-crud.yaml#/Wine
+  /wines/{id}/editable:
+    $ref: ./wines/paths-crud.yaml#/WineEditable
+
   # Wines info operations
   /wines/count:
     $ref: ./wines/paths-info.yaml#/WinesCount
@@ -30,10 +35,16 @@ paths:
     $ref: ./wines/paths-info.yaml#/WinesFoodPairings
   /wines/validate:
     $ref: ./wines/paths-info.yaml#/ValidateName
+
+  # Wine search
+  /wines/search:
+    $ref: ./wines/paths-search.yaml#/WineSearch
   
 components:
   schemas:
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
+    WineType:
+      $ref: ./wines/schemas.yaml#/WineType
     ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
