@@ -1,3 +1,17 @@
+WinesCount:
+  get:
+    summary: Get wine count.
+    description: Returns total count of wines in the application.
+    operationId: count
+    tags: [wines-info]
+    responses:
+      200:
+        description: Fetched wine count.
+        content:
+          application/json:
+            schema:
+              type: integer
+
 WinesCountries:
   get:
     summary: Get list of distinct countries.

@@ -63,7 +63,7 @@ Wine:
 
   put:
     summary: Update wine.
-    description: Update wine.
+    description: Update a single wine.
     operationId: update
     tags: [wines-crud]
     requestBody:
@@ -81,6 +81,19 @@ Wine:
               $ref: ./schemas.yaml#/Wine
       400:
         $ref: ../common/errors.yaml#/BadRequest
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+  delete:
+    summary: Delete wine.
+    description: Delete a single wine.
+    operationId: delete
+    tags: [wines-crud]
+    responses:
+      204:
+        description: Successfully deleted wine.
       401:
         $ref: ../common/errors.yaml#/Unauthorized
       404:

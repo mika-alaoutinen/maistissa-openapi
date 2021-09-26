@@ -20,6 +20,8 @@ paths:
   /wines/{id}:
     $ref: ./wines/paths-crud.yaml#/Wine
   # Wines info operations
+  /wines/count:
+    $ref: ./wines/paths-info.yaml#/WinesCount
   /wines/countries:
     $ref: ./wines/paths-info.yaml#/WinesCountries
   /wines/descriptions:
