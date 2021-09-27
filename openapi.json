@@ -365,7 +365,17 @@
         },
         "summary" : "Validate wine's name.",
         "tags" : [ "wines-info" ]
-      }
+      },
+      "parameters" : [ {
+        "description" : "Wine name to validate.",
+        "in" : "query",
+        "name" : "name",
+        "required" : true,
+        "schema" : {
+          "minLength" : 1,
+          "type" : "string"
+        }
+      } ]
     },
     "/wines/search" : {
       "get" : {
@@ -421,6 +431,7 @@
         "name" : "volumes",
         "schema" : {
           "items" : {
+            "format" : "double",
             "type" : "number"
           },
           "minimum" : 0,
@@ -432,6 +443,7 @@
         "name" : "priceRange",
         "schema" : {
           "items" : {
+            "format" : "double",
             "type" : "number"
           },
           "maximum" : 2,
