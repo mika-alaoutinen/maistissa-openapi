@@ -155,6 +155,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
+          "format" : "int64",
           "type" : "integer"
         }
       } ],
@@ -252,6 +253,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
+          "format" : "int64",
           "type" : "integer"
         }
       } ]
@@ -445,6 +447,7 @@
         "description" : "A wine resource.",
         "properties" : {
           "id" : {
+            "format" : "int64",
             "minimum" : 1,
             "type" : "integer"
           },

@@ -45,6 +45,7 @@ Wine:
     required: true
     schema:
       type: integer
+      format: int64
 
   get:
     summary: Get a single wine.
@@ -106,7 +107,8 @@ WineEditable:
     description: Wine ID.
     required: true
     schema:
-      type: integer    
+      type: integer
+      format: int64
 
   get:
     summary: Get a single wine.
