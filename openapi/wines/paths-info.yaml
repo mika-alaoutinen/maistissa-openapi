@@ -62,6 +62,14 @@ WinesFoodPairings:
 
 # This should be a POST
 ValidateName:
+  parameters:
+  - in: query
+    name: name
+    description: Wine name to validate.
+    required: true
+    schema:
+      type: string
+      minLength: 1
   get:
     summary: Validate wine's name.
     description: Check that wine's name is unique. TODO change to POST.
