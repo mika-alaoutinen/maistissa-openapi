@@ -15,7 +15,7 @@ ReviewsByWineId:
     tags: [reviews-by-wine]
     responses:
       200:
-        $ref: ./responses.yaml#/ReviewsList
+        $ref: ./responses.yaml#/ReviewList
 
 ReviewsByWineName:
   parameters:
@@ -33,4 +33,4 @@ ReviewsByWineName:
     tags: [reviews-by-wine]
     responses:
       200:
-        $ref: ./responses.yaml#/ReviewsList
+        $ref: ./responses.yaml#/ReviewList

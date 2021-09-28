@@ -6,7 +6,7 @@ Reviews:
     tags: [reviews-crud]
     responses:
       200:
-        $ref: ./responses.yaml#/ReviewsList
+        $ref: ./responses.yaml#/ReviewList
 
 Review:
   parameters:
