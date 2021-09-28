@@ -20,7 +20,7 @@ BadRequest:
   content:
     application/json:
       schema:
-        $ref: "./errors.yaml#/ErrorBody"
+        $ref: ./errors.yaml#/ErrorBody
 
 Unauthorized:
   description: HTTP 401. Request was unauthorized.
@@ -28,7 +28,7 @@ Unauthorized:
   content:
     application/json:
       schema:
-        $ref: "./errors.yaml#/ErrorBody"
+        $ref: ./errors.yaml#/ErrorBody
 
 NotFound:
   description: HTTP 404. Could not find resource with given id.
@@ -36,4 +36,4 @@ NotFound:
   content:
     application/json:
       schema:
-        $ref: "./errors.yaml#/ErrorBody"
+        $ref: ./errors.yaml#/ErrorBody
