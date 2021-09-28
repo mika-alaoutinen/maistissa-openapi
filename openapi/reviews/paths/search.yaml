@@ -27,3 +27,50 @@ ReviewSearch:
       200:
         $ref: ../responses.yaml#/ReviewList
   
+ReviewSearchBest:
+  parameters:
+  - $ref: ./search.yaml#/Limit
+
+  get:
+    summary: Get best reviews.
+    description: Get best rated reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchBest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+ReviewSearchNewest:
+  parameters:
+  - $ref: ./search.yaml#/Limit
+
+  get:
+    summary: Get newest reviews.
+    description: Get newest reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchNewest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+ReviewSearchWorst:
+  parameters:
+  - $ref: ./search.yaml#/Limit
+
+  get:
+    summary: Get worst reviews.
+    description: Get worst rated reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchNewest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+# Common query param
+Limit:
+  in: query
+  name: limit
+  description: Max number of results to fetch.
+  schema:
+    type: integer
+    default: 10

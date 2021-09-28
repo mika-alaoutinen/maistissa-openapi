@@ -47,6 +47,12 @@ paths:
   # Review search
   /reviews/search:
     $ref: ./reviews/paths/search.yaml#/ReviewSearch
+  /reviews/search/best:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchBest
+  /reviews/search/newest:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchNewest
+  /reviews/search/worst:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchWorst
 
   # Wine CRUD operations
   /wines:
