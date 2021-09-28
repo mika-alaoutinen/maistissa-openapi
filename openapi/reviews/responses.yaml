@@ -1,0 +1,15 @@
+ReviewsList:
+  description: List of reviews.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: ./schemas.yaml#/Review
+
+Review:
+  description: A single review.
+  content:
+    application/json:
+      schema:
+        $ref: ./schemas.yaml#/Review

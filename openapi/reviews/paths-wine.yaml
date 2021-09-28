@@ -15,13 +15,7 @@ ReviewsByWineId:
     tags: [reviews-by-wine]
     responses:
       200:
-        description: Fetched reviews for wine.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/ReviewsList
 
 ReviewsByWineName:
   parameters:
@@ -39,10 +33,4 @@ ReviewsByWineName:
     tags: [reviews-by-wine]
     responses:
       200:
-        description: Fetched reviews for wine.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/ReviewsList

@@ -6,13 +6,7 @@ Reviews:
     tags: [reviews-crud]
     responses:
       200:
-        description: Fetched all reviews.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/ReviewsList
 
 Review:
   parameters:
@@ -31,11 +25,7 @@ Review:
     tags: [reviews-crud]
     responses:
       200:
-        description: Fetched a single review with given ID.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/Review
       404:
         $ref: ../common/errors.yaml#/NotFound
 
@@ -51,11 +41,7 @@ Review:
             $ref: ./schemas.yaml#/Review
     responses:
       200:
-        description: Successfully updated review.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/Review
       400:
         $ref: ../common/errors.yaml#/BadRequest
       401:
@@ -98,11 +84,7 @@ AddReview:
             $ref: ./schemas.yaml#/Review
     responses:
       200:
-        description: Created new review.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Review
+        $ref: ./responses.yaml#/Review
       400:
         $ref: ../common/errors.yaml#/BadRequest
       401:
