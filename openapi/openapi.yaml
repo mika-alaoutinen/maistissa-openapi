@@ -42,7 +42,9 @@ paths:
   
 components:
   schemas:
-    Wine:
-      $ref: ./wines/schemas.yaml#/Wine
     ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
+    Review:
+      $ref: ./reviews/schemas.yaml#/Review
+    Wine:
+      $ref: ./wines/schemas.yaml#/Wine
