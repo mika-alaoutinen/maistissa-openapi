@@ -26,23 +26,23 @@ tags:
 paths:
   # Review CRUD operations
   /reviews:
-    $ref: ./reviews/paths-crud.yaml#/Reviews
+    $ref: ./reviews/paths/crud.yaml#/Reviews
   /reviews/{id}:
-    $ref: ./reviews/paths-crud.yaml#/Review
+    $ref: ./reviews/paths/crud.yaml#/Review
   /reviews/{wineId}:
-    $ref: ./reviews/paths-crud.yaml#/AddReview
+    $ref: ./reviews/paths/crud.yaml#/AddReview
   /reviews/{id}/editable:
-    $ref: ./reviews/paths-crud.yaml#/ReviewEditable
+    $ref: ./reviews/paths/crud.yaml#/ReviewEditable
 
   # Reviews of specific wines
   /reviews/wine/name/{wineName}:
-    $ref: ./reviews/paths-wine.yaml#/ReviewsByWineName
+    $ref: ./reviews/paths/reviews-by-wine.yaml#/ReviewsByWineName
   /reviews/wine/id/{wineId}:
-    $ref: ./reviews/paths-wine.yaml#/ReviewsByWineId
+    $ref: ./reviews/paths/reviews-by-wine.yaml#/ReviewsByWineId
 
   # Review info operations
   /reviews/count:
-    $ref: ./reviews/paths-info.yaml#/ReviewCount
+    $ref: ./reviews/paths/info.yaml#/ReviewCount
 
   # Review search
   /reviews/search:

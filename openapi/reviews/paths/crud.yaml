@@ -6,7 +6,7 @@ Reviews:
     tags: [reviews-crud]
     responses:
       200:
-        $ref: ./responses.yaml#/ReviewList
+        $ref: ../responses.yaml#/ReviewList
 
 Review:
   parameters:
@@ -25,9 +25,9 @@ Review:
     tags: [reviews-crud]
     responses:
       200:
-        $ref: ./responses.yaml#/Review
+        $ref: ../responses.yaml#/Review
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   put:
     summary: Update review.
@@ -38,16 +38,16 @@ Review:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Review
+            $ref: ../schemas.yaml#/Review
     responses:
       200:
-        $ref: ./responses.yaml#/Review
+        $ref: ../responses.yaml#/Review
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   delete:
     summary: Delete review.
@@ -58,9 +58,9 @@ Review:
       204:
         description: Successfully deleted review.
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
 AddReview:
   parameters:
@@ -81,14 +81,14 @@ AddReview:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Review
+            $ref: ../schemas.yaml#/Review
     responses:
       200:
-        $ref: ./responses.yaml#/Review
+        $ref: ../responses.yaml#/Review
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
 
 ReviewEditable:
   parameters:
@@ -113,4 +113,4 @@ ReviewEditable:
             schema:
               type: boolean
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
