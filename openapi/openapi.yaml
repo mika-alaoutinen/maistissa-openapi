@@ -10,6 +10,8 @@ servers:
 tags:
 - name: reviews-crud
   description: CRUD operations for reviews.
+- name: reviews-info
+  description: Operations for finding information regarding reviews.
 - name: reviews-by-wine
   description: Operations for finding reviews of specific wines.
 - name: wines-crud
@@ -35,6 +37,10 @@ paths:
     $ref: ./reviews/paths-wine.yaml#/ReviewsByWineName
   /reviews/wine/id/{wineId}:
     $ref: ./reviews/paths-wine.yaml#/ReviewsByWineId
+
+  # Reviews info operations
+  /reviews/count:
+    $ref: ./reviews/paths-info.yaml#/ReviewCount
 
   # Wines CRUD operations
   /wines:

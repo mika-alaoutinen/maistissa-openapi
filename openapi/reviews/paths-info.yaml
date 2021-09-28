@@ -1,0 +1,13 @@
+ReviewCount:
+  get:
+    summary: Get review count
+    description: Returns total count of reviews in the application.
+    operationId: findAll
+    tags: [reviews-info]
+    responses:
+      200:
+        description: Total review count.
+        content:
+          application/json:
+            schema:
+              type: integer

@@ -1,6 +1,6 @@
 Reviews:
   get:
-    summary: Get all Reviews
+    summary: Get all reviews
     description: Returns all reviews in descending order by date.
     operationId: findAll
     tags: [reviews-crud]

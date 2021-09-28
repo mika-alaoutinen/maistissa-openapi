@@ -6,7 +6,7 @@ WinesCount:
     tags: [wines-info]
     responses:
       200:
-        description: Fetched wine count.
+        description: Total wine count.
         content:
           application/json:
             schema:
