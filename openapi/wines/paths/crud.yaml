@@ -6,7 +6,7 @@ Wines:
     tags: [wines-crud]
     responses:
       200:
-        $ref: ./responses.yaml#/WineList
+        $ref: ../responses.yaml#/WineList
 
   post:
     summary: Add new wine.
@@ -17,15 +17,15 @@ Wines:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Wine
+            $ref: ../schemas.yaml#/Wine
       required: true
     responses:
       201:
-        $ref: ./responses.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
 
 Wine:
   parameters:
@@ -44,9 +44,9 @@ Wine:
     tags: [wines-crud]
     responses:
       200:
-        $ref: ./responses.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   put:
     summary: Update wine.
@@ -57,30 +57,30 @@ Wine:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Wine
+            $ref: ../schemas.yaml#/Wine
       required: true
     responses:
       200:
-        $ref: ./responses.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   delete:
     summary: Delete wine.
-    description: Delete a single wine.
+    description: Delete wine.
     operationId: delete
     tags: [wines-crud]
     responses:
       204:
         description: Successfully deleted wine.
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
 WineEditable:
   parameters:
@@ -105,4 +105,4 @@ WineEditable:
             schema:
               type: boolean
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound

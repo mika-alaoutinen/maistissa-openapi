@@ -46,4 +46,4 @@ WineSearch:
     tags: [wines-search]
     responses:
       200:
-        $ref: ./responses.yaml#/WineList
+        $ref: ../responses.yaml#/WineList

@@ -20,7 +20,7 @@ WinesCountries:
     tags: [wines-info]
     responses:
       200:
-        $ref: ./responses.yaml#/StringList
+        $ref: ../responses.yaml#/StringList
 
 WinesDescriptions:
   get:
@@ -30,7 +30,7 @@ WinesDescriptions:
     tags: [wines-info]
     responses:
       200:
-        $ref: ./responses.yaml#/StringList
+        $ref: ../responses.yaml#/StringList
 
 WinesFoodPairings:
   get:
@@ -40,7 +40,7 @@ WinesFoodPairings:
     tags: [wines-info]
     responses:
       200:
-        $ref: ./responses.yaml#/StringList
+        $ref: ../responses.yaml#/StringList
 
 # This should be a POST
 ValidateName:
