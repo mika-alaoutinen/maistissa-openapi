@@ -1,0 +1,29 @@
+ReviewSearch:
+  parameters:
+  - in: query
+    name: author
+    description: Review author's name.
+    schema:
+      type: string
+  - in: query
+    name: dateRange
+    description: Date range for reviews.
+    schema:
+      type: string
+      format: date
+  - in: query
+    name: ratingRange
+    description: Rating range for reviews.
+    schema:
+      type: number
+      format: float
+
+  get:
+    summary: Search reviews
+    description: Search for reviews based on their author, date and rating.
+    operationId: search
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+  
