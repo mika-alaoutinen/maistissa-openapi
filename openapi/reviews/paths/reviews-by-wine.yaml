@@ -1,0 +1,36 @@
+ReviewsByWineId:
+  parameters:
+  - in: path
+    name: wineId
+    description: Wine ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  get:
+    summary: Get reviews for wine by wine ID.
+    description: Get all reviews for a certain wine. Search by wine ID.
+    operationId: findByWineId
+    tags: [reviews-by-wine]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+ReviewsByWineName:
+  parameters:
+  - in: path
+    name: wineName
+    description: Wine name.
+    required: true
+    schema:
+      type: string
+
+  get:
+    summary: Get reviews for wine by wine name.
+    description: Get all reviews for a certain wine. Search by wine name.
+    operationId: findByWineName
+    tags: [reviews-by-wine]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList

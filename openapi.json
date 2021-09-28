@@ -8,16 +8,506 @@
     "url" : "http://localhost:8082/api"
   } ],
   "tags" : [ {
+    "description" : "CRUD operations for reviews.",
+    "name" : "reviews-crud"
+  }, {
+    "description" : "Operations for finding information regarding reviews.",
+    "name" : "reviews-info"
+  }, {
+    "description" : "Operations for finding reviews of specific wines.",
+    "name" : "reviews-by-wine"
+  }, {
+    "description" : "Review search operations.",
+    "name" : "reviews-search"
+  }, {
     "description" : "CRUD operations for wines.",
     "name" : "wines-crud"
   }, {
     "description" : "Operations for finding information regarding wines.",
     "name" : "wines-info"
   }, {
-    "description" : "Wine search functionality.",
+    "description" : "Wine search operations.",
     "name" : "wines-search"
   } ],
   "paths" : {
+    "/reviews" : {
+      "get" : {
+        "description" : "Returns all reviews in descending order by date.",
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get all reviews",
+        "tags" : [ "reviews-crud" ]
+      }
+    },
+    "/reviews/{id}" : {
+      "delete" : {
+        "description" : "Delete review.",
+        "operationId" : "delete",
+        "responses" : {
+          "204" : {
+            "description" : "Successfully deleted review."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Delete review.",
+        "tags" : [ "reviews-crud" ]
+      },
+      "get" : {
+        "description" : "Get a single review.",
+        "operationId" : "find",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Review"
+                }
+              }
+            },
+            "description" : "Fetched a single review."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Get a single review.",
+        "tags" : [ "reviews-crud" ]
+      },
+      "parameters" : [ {
+        "description" : "Review ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "format" : "int64",
+          "type" : "integer"
+        }
+      } ],
+      "put" : {
+        "description" : "Update review.",
+        "operationId" : "update",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Review"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Review"
+                }
+              }
+            },
+            "description" : "Fetched a single review."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 400. Request body was malformed."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Update review.",
+        "tags" : [ "reviews-crud" ]
+      }
+    },
+    "/reviews/{wineId}" : {
+      "parameters" : [ {
+        "description" : "Wine that review is added for.",
+        "in" : "path",
+        "name" : "wineId",
+        "required" : true,
+        "schema" : {
+          "format" : "int64",
+          "type" : "integer"
+        }
+      } ],
+      "post" : {
+        "description" : "Add new review. Must give Wine ID as path parameter to indicate the wine that the review is for.",
+        "operationId" : "add",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Review"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Review"
+                }
+              }
+            },
+            "description" : "Fetched a single review."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 400. Request body was malformed."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          }
+        },
+        "summary" : "Add new review.",
+        "tags" : [ "reviews-crud" ]
+      }
+    },
+    "/reviews/{id}/editable" : {
+      "get" : {
+        "description" : "Does the user have permission to edit the resource?",
+        "operationId" : "isEditable",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "boolean"
+                }
+              }
+            },
+            "description" : "Boolean indicating if review can be edited by user."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Is review editable?",
+        "tags" : [ "reviews-crud" ]
+      },
+      "parameters" : [ {
+        "description" : "Review ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "format" : "int64",
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/reviews/wine/name/{wineName}" : {
+      "get" : {
+        "description" : "Get all reviews for a certain wine. Search by wine name.",
+        "operationId" : "findByWineName",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get reviews for wine by wine name.",
+        "tags" : [ "reviews-by-wine" ]
+      },
+      "parameters" : [ {
+        "description" : "Wine name.",
+        "in" : "path",
+        "name" : "wineName",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/reviews/wine/id/{wineId}" : {
+      "get" : {
+        "description" : "Get all reviews for a certain wine. Search by wine ID.",
+        "operationId" : "findByWineId",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get reviews for wine by wine ID.",
+        "tags" : [ "reviews-by-wine" ]
+      },
+      "parameters" : [ {
+        "description" : "Wine ID.",
+        "in" : "path",
+        "name" : "wineId",
+        "required" : true,
+        "schema" : {
+          "format" : "int64",
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/reviews/count" : {
+      "get" : {
+        "description" : "Returns total count of reviews in the application.",
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "description" : "Total review count."
+          }
+        },
+        "summary" : "Get review count",
+        "tags" : [ "reviews-info" ]
+      }
+    },
+    "/reviews/search" : {
+      "get" : {
+        "description" : "Search for reviews based on their author, date and rating.",
+        "operationId" : "search",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Search reviews",
+        "tags" : [ "reviews-search" ]
+      },
+      "parameters" : [ {
+        "description" : "Review author's name.",
+        "in" : "query",
+        "name" : "author",
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "description" : "Date range for reviews.",
+        "in" : "query",
+        "name" : "dateRange",
+        "schema" : {
+          "format" : "date",
+          "type" : "string"
+        }
+      }, {
+        "description" : "Rating range for reviews.",
+        "in" : "query",
+        "name" : "ratingRange",
+        "schema" : {
+          "format" : "float",
+          "type" : "number"
+        }
+      } ]
+    },
+    "/reviews/search/best" : {
+      "get" : {
+        "description" : "Get best rated reviews. Number of reviews can be given as request parameter, default amount is 10.",
+        "operationId" : "searchBest",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get best reviews.",
+        "tags" : [ "reviews-search" ]
+      },
+      "parameters" : [ {
+        "description" : "Max number of results to fetch.",
+        "in" : "query",
+        "name" : "limit",
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/reviews/search/newest" : {
+      "get" : {
+        "description" : "Get newest reviews. Number of reviews can be given as request parameter, default amount is 10.",
+        "operationId" : "searchNewest",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get newest reviews.",
+        "tags" : [ "reviews-search" ]
+      },
+      "parameters" : [ {
+        "description" : "Max number of results to fetch.",
+        "in" : "query",
+        "name" : "limit",
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/reviews/search/worst" : {
+      "get" : {
+        "description" : "Get worst rated reviews. Number of reviews can be given as request parameter, default amount is 10.",
+        "operationId" : "searchNewest",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Review"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Fetched a list of reviews."
+          }
+        },
+        "summary" : "Get worst reviews.",
+        "tags" : [ "reviews-search" ]
+      },
+      "parameters" : [ {
+        "description" : "Max number of results to fetch.",
+        "in" : "query",
+        "name" : "limit",
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        }
+      } ]
+    },
     "/wines" : {
       "get" : {
         "description" : "Returns all wines ordered alphabetically by name.",
@@ -34,7 +524,7 @@
                 }
               }
             },
-            "description" : "Fetched all wines."
+            "description" : "Fetched a list of wines."
           }
         },
         "summary" : "Get all wines.",
@@ -62,7 +552,7 @@
                 }
               }
             },
-            "description" : "Created new wine."
+            "description" : "Fetched a single wine."
           },
           "400" : {
             "content" : {
@@ -91,7 +581,7 @@
     },
     "/wines/{id}" : {
       "delete" : {
-        "description" : "Delete a single wine.",
+        "description" : "Delete wine.",
         "operationId" : "delete",
         "responses" : {
           "204" : {
@@ -133,7 +623,7 @@
                 }
               }
             },
-            "description" : "Found wine with given ID."
+            "description" : "Fetched a single wine."
           },
           "404" : {
             "content" : {
@@ -160,7 +650,7 @@
         }
       } ],
       "put" : {
-        "description" : "Update a single wine.",
+        "description" : "Update wine.",
         "operationId" : "update",
         "requestBody" : {
           "content" : {
@@ -181,7 +671,7 @@
                 }
               }
             },
-            "description" : "Successfully updated wine."
+            "description" : "Fetched a single wine."
           },
           "400" : {
             "content" : {
@@ -220,7 +710,7 @@
     },
     "/wines/{id}/editable" : {
       "get" : {
-        "description" : "Get a single wine.",
+        "description" : "Does the user have permission to edit the resource?",
         "operationId" : "isEditable",
         "responses" : {
           "200" : {
@@ -244,7 +734,7 @@
             "description" : "HTTP 404. Could not find resource with given id."
           }
         },
-        "summary" : "Get a single wine.",
+        "summary" : "Is wine editable?",
         "tags" : [ "wines-crud" ]
       },
       "parameters" : [ {
@@ -271,7 +761,7 @@
                 }
               }
             },
-            "description" : "Fetched wine count."
+            "description" : "Total wine count."
           }
         },
         "summary" : "Get wine count.",
@@ -294,7 +784,7 @@
                 }
               }
             },
-            "description" : "Fetched list of countries."
+            "description" : "Fetched a list of strings."
           }
         },
         "summary" : "Get list of distinct countries.",
@@ -317,7 +807,7 @@
                 }
               }
             },
-            "description" : "Fetched list of wine descriptions."
+            "description" : "Fetched a list of strings."
           }
         },
         "summary" : "Get list of distinct wine descriptions.",
@@ -340,7 +830,7 @@
                 }
               }
             },
-            "description" : "Fetched list of wine-food pairings."
+            "description" : "Fetched a list of strings."
           }
         },
         "summary" : "Get list of distinct food pairings.",
@@ -393,7 +883,7 @@
                 }
               }
             },
-            "description" : "Fetched wines that meet the search criteria."
+            "description" : "Fetched a list of wines."
           }
         },
         "summary" : "Search wines.",
@@ -455,6 +945,58 @@
   },
   "components" : {
     "schemas" : {
+      "ErrorBody" : {
+        "description" : "A generic error response.",
+        "properties" : {
+          "timestamp" : {
+            "format" : "datetime",
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "integer"
+          },
+          "error" : {
+            "type" : "string"
+          },
+          "path" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Review" : {
+        "description" : "A review resource.",
+        "properties" : {
+          "id" : {
+            "format" : "int64",
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "author" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "date" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "reviewText" : {
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "rating" : {
+            "format" : "double",
+            "maximum" : 5,
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "wine" : {
+            "$ref" : "#/components/schemas/Wine"
+          }
+        },
+        "required" : [ "author", "date", "id", "rating" ],
+        "type" : "object"
+      },
       "Wine" : {
         "description" : "A wine resource.",
         "properties" : {
@@ -476,10 +1018,12 @@
             "type" : "string"
           },
           "price" : {
+            "format" : "double",
             "minimum" : 0,
             "type" : "number"
           },
           "volume" : {
+            "format" : "double",
             "minimum" : 0,
             "type" : "number"
           },
@@ -505,25 +1049,7 @@
             "type" : "string"
           }
         },
-        "type" : "object"
-      },
-      "ErrorBody" : {
-        "description" : "A generic error response.",
-        "properties" : {
-          "timestamp" : {
-            "format" : "datetime",
-            "type" : "string"
-          },
-          "status" : {
-            "type" : "integer"
-          },
-          "error" : {
-            "type" : "string"
-          },
-          "path" : {
-            "type" : "string"
-          }
-        },
+        "required" : [ "country", "description", "foodPairings", "id", "name", "price", "type", "volume" ],
         "type" : "object"
       }
     }

@@ -8,41 +8,81 @@ servers:
   - url: http://localhost:8082/api
 
 tags:
+- name: reviews-crud
+  description: CRUD operations for reviews.
+- name: reviews-info
+  description: Operations for finding information regarding reviews.
+- name: reviews-by-wine
+  description: Operations for finding reviews of specific wines.
+- name: reviews-search
+  description: Review search operations.
 - name: wines-crud
   description: CRUD operations for wines.
 - name: wines-info
   description: Operations for finding information regarding wines.
 - name: wines-search
-  description: Wine search functionality.
+  description: Wine search operations.
 
 paths:
-  # Wines CRUD operations
-  /wines:
-    $ref: ./wines/paths-crud.yaml#/Wines
-  /wines/{id}:
-    $ref: ./wines/paths-crud.yaml#/Wine
-  /wines/{id}/editable:
-    $ref: ./wines/paths-crud.yaml#/WineEditable
+  # Review CRUD operations
+  /reviews:
+    $ref: ./reviews/paths/crud.yaml#/Reviews
+  /reviews/{id}:
+    $ref: ./reviews/paths/crud.yaml#/Review
+  /reviews/{wineId}:
+    $ref: ./reviews/paths/crud.yaml#/AddReview
+  /reviews/{id}/editable:
+    $ref: ./reviews/paths/crud.yaml#/ReviewEditable
 
-  # Wines info operations
+  # Reviews of specific wines
+  /reviews/wine/name/{wineName}:
+    $ref: ./reviews/paths/reviews-by-wine.yaml#/ReviewsByWineName
+  /reviews/wine/id/{wineId}:
+    $ref: ./reviews/paths/reviews-by-wine.yaml#/ReviewsByWineId
+
+  # Review info operations
+  /reviews/count:
+    $ref: ./reviews/paths/info.yaml#/ReviewCount
+
+  # Review search
+  /reviews/search:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearch
+  /reviews/search/best:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchBest
+  /reviews/search/newest:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchNewest
+  /reviews/search/worst:
+    $ref: ./reviews/paths/search.yaml#/ReviewSearchWorst
+
+  # Wine CRUD operations
+  /wines:
+    $ref: ./wines/paths/crud.yaml#/Wines
+  /wines/{id}:
+    $ref: ./wines/paths/crud.yaml#/Wine
+  /wines/{id}/editable:
+    $ref: ./wines/paths/crud.yaml#/WineEditable
+
+  # Wine info operations
   /wines/count:
-    $ref: ./wines/paths-info.yaml#/WinesCount
+    $ref: ./wines/paths/info.yaml#/WinesCount
   /wines/countries:
-    $ref: ./wines/paths-info.yaml#/WinesCountries
+    $ref: ./wines/paths/info.yaml#/WinesCountries
   /wines/descriptions:
-    $ref: ./wines/paths-info.yaml#/WinesDescriptions
+    $ref: ./wines/paths/info.yaml#/WinesDescriptions
   /wines/food-pairings:
-    $ref: ./wines/paths-info.yaml#/WinesFoodPairings
+    $ref: ./wines/paths/info.yaml#/WinesFoodPairings
   /wines/validate:
-    $ref: ./wines/paths-info.yaml#/ValidateName
+    $ref: ./wines/paths/info.yaml#/ValidateName
 
   # Wine search
   /wines/search:
-    $ref: ./wines/paths-search.yaml#/WineSearch
+    $ref: ./wines/paths/search.yaml#/WineSearch
   
 components:
   schemas:
-    Wine:
-      $ref: ./wines/schemas.yaml#/Wine
     ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
+    Review:
+      $ref: ./reviews/schemas.yaml#/Review
+    Wine:
+      $ref: ./wines/schemas.yaml#/Wine

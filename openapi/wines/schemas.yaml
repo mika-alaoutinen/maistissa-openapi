@@ -1,6 +1,15 @@
 Wine:
   description: A wine resource.
   type: object
+  required:
+  - id
+  - name
+  - type
+  - country
+  - price
+  - volume
+  - description
+  - foodPairings
   properties:
     id:
       type: integer
@@ -17,9 +26,11 @@ Wine:
       minLength: 1
     price:
       type: number
+      format: double
       minimum: 0
     volume:
       type: number
+      format: double
       minimum: 0
     description:
       description: Wine's description contains a list of keywords or phrases.

@@ -1,0 +1,15 @@
+Review:
+  description: Fetched a single review.
+  content:
+    application/json:
+      schema:
+        $ref: ./schemas.yaml#/Review
+
+ReviewList:
+  description: Fetched a list of reviews.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: ./schemas.yaml#/Review

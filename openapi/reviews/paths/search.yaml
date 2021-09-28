@@ -1,0 +1,84 @@
+ReviewSearch:
+  parameters:
+  - in: query
+    name: author
+    description: Review author's name.
+    schema:
+      type: string
+  - in: query
+    name: dateRange
+    description: Date range for reviews.
+    schema:
+      type: string
+      format: date
+  - in: query
+    name: ratingRange
+    description: Rating range for reviews.
+    schema:
+      type: number
+      format: float
+
+  get:
+    summary: Search reviews
+    description: Search for reviews based on their author, date and rating.
+    operationId: search
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+# Note to self: the common query param limit cannot be separated into its own object and used with $ref,
+# because that breaks the code generator.
+ReviewSearchBest:
+  parameters:
+  - in: query
+    name: limit
+    description: Max number of results to fetch.
+    schema:
+      type: integer
+      default: 10
+
+  get:
+    summary: Get best reviews.
+    description: Get best rated reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchBest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+ReviewSearchNewest:
+  parameters:
+  - in: query
+    name: limit
+    description: Max number of results to fetch.
+    schema:
+      type: integer
+      default: 10
+
+  get:
+    summary: Get newest reviews.
+    description: Get newest reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchNewest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList
+
+ReviewSearchWorst:
+  parameters:
+  - in: query
+    name: limit
+    description: Max number of results to fetch.
+    schema:
+      type: integer
+      default: 10
+
+  get:
+    summary: Get worst reviews.
+    description: Get worst rated reviews. Number of reviews can be given as request parameter, default amount is 10.
+    operationId: searchNewest
+    tags: [reviews-search]
+    responses:
+      200:
+        $ref: ../responses.yaml#/ReviewList

@@ -6,13 +6,7 @@ Wines:
     tags: [wines-crud]
     responses:
       200:
-        description: Fetched all wines.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ./schemas.yaml#/Wine
+        $ref: ../responses.yaml#/WineList
 
   post:
     summary: Add new wine.
@@ -23,19 +17,15 @@ Wines:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Wine
+            $ref: ../schemas.yaml#/Wine
       required: true
     responses:
       201:
-        description: Created new wine.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
 
 Wine:
   parameters:
@@ -54,51 +44,43 @@ Wine:
     tags: [wines-crud]
     responses:
       200:
-        description: Found wine with given ID.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   put:
     summary: Update wine.
-    description: Update a single wine.
+    description: Update wine.
     operationId: update
     tags: [wines-crud]
     requestBody:
       content:
         application/json:
           schema:
-            $ref: ./schemas.yaml#/Wine
+            $ref: ../schemas.yaml#/Wine
       required: true
     responses:
       200:
-        description: Successfully updated wine.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ../responses.yaml#/Wine
       400:
-        $ref: ../common/errors.yaml#/BadRequest
+        $ref: ../../common/errors.yaml#/BadRequest
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
   delete:
     summary: Delete wine.
-    description: Delete a single wine.
+    description: Delete wine.
     operationId: delete
     tags: [wines-crud]
     responses:
       204:
         description: Successfully deleted wine.
       401:
-        $ref: ../common/errors.yaml#/Unauthorized
+        $ref: ../../common/errors.yaml#/Unauthorized
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
 
 WineEditable:
   parameters:
@@ -111,8 +93,8 @@ WineEditable:
       format: int64
 
   get:
-    summary: Get a single wine.
-    description: Get a single wine.
+    summary: Is wine editable?
+    description: Does the user have permission to edit the resource?
     operationId: isEditable
     tags: [wines-crud]
     responses:
@@ -123,4 +105,4 @@ WineEditable:
             schema:
               type: boolean
       404:
-        $ref: ../common/errors.yaml#/NotFound
+        $ref: ../../common/errors.yaml#/NotFound
