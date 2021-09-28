@@ -6,13 +6,7 @@ Wines:
     tags: [wines-crud]
     responses:
       200:
-        description: Fetched all wines.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ./schemas.yaml#/Wine
+        $ref: ./responses.yaml#/WineList
 
   post:
     summary: Add new wine.
@@ -27,11 +21,7 @@ Wines:
       required: true
     responses:
       201:
-        description: Created new wine.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ./responses.yaml#/Wine
       400:
         $ref: ../common/errors.yaml#/BadRequest
       401:
@@ -54,11 +44,7 @@ Wine:
     tags: [wines-crud]
     responses:
       200:
-        description: Fetched a single wine with given ID.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ./responses.yaml#/Wine
       404:
         $ref: ../common/errors.yaml#/NotFound
 
@@ -75,11 +61,7 @@ Wine:
       required: true
     responses:
       200:
-        description: Successfully updated wine.
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas.yaml#/Wine
+        $ref: ./responses.yaml#/Wine
       400:
         $ref: ../common/errors.yaml#/BadRequest
       401:
