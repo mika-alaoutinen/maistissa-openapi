@@ -8,6 +8,8 @@ servers:
   - url: http://localhost:8082/api
 
 tags:
+- name: reviews-crud
+  description: CRUD operations for reviews.
 - name: wines-crud
   description: CRUD operations for wines.
 - name: wines-info
@@ -16,6 +18,16 @@ tags:
   description: Wine search functionality.
 
 paths:
+  # Reviews CRUD operations
+  /reviews:
+    $ref: ./reviews/paths-crud.yaml#/Reviews
+  /reviews/{id}:
+    $ref: ./reviews/paths-crud.yaml#/Review
+  /reviews/{wineId}:
+    $ref: ./reviews/paths-crud.yaml#/AddReview
+  /reviews/{id}/editable:
+    $ref: ./reviews/paths-crud.yaml#/ReviewEditable
+
   # Wines CRUD operations
   /wines:
     $ref: ./wines/paths-crud.yaml#/Wines

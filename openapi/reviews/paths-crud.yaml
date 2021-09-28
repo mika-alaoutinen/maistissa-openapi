@@ -1,0 +1,134 @@
+Reviews:
+  get:
+    summary: Get all Reviews
+    description: Returns all reviews in descending order by date.
+    operationId: findAll
+    tags: [reviews-crud]
+    responses:
+      200:
+        description: Fetched all reviews.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ./schemas.yaml#/Review
+
+Review:
+  parameters:
+  - in: path
+    name: id
+    description: Review ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  get:
+    summary: Get a single review.
+    description: Get a single review.
+    operationId: find
+    tags: [reviews-crud]
+    responses:
+      200:
+        description: Fetched a single review with given ID.
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Review
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+  put:
+    summary: Update review.
+    description: Update review.
+    operationId: update
+    tags: [reviews-crud]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/Review
+    responses:
+      200:
+        description: Successfully updated review.
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Review
+      400:
+        $ref: ../common/errors.yaml#/BadRequest
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+  delete:
+    summary: Delete review.
+    description: Delete review.
+    operationId: delete
+    tags: [reviews-crud]
+    responses:
+      204:
+        description: Successfully deleted review.
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+
+AddReview:
+  parameters:
+  - in: path
+    name: wineId
+    description: Wine that review is added for.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  post:
+    summary: Add new review.
+    description: Add new review. Must give Wine ID as path parameter to indicate the wine that the review is for.
+    operationId: add
+    tags: [reviews-crud]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/Review
+    responses:
+      200:
+        description: Created new review.
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/Review
+      400:
+        $ref: ../common/errors.yaml#/BadRequest
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+
+ReviewEditable:
+  parameters:
+  - in: path
+    name: id
+    description: Review ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  get:
+    summary: Is review editable?
+    description: Does the user have permission to edit the resource?
+    operationId: isEditable
+    tags: [reviews-crud]
+    responses:
+      200:
+        description: Boolean indicating if review can be edited by user.
+        content:
+          application/json:
+            schema:
+              type: boolean
+      404:
+        $ref: ../common/errors.yaml#/NotFound

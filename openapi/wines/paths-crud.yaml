@@ -54,7 +54,7 @@ Wine:
     tags: [wines-crud]
     responses:
       200:
-        description: Found wine with given ID.
+        description: Fetched a single wine with given ID.
         content:
           application/json:
             schema:
@@ -64,7 +64,7 @@ Wine:
 
   put:
     summary: Update wine.
-    description: Update a single wine.
+    description: Update wine.
     operationId: update
     tags: [wines-crud]
     requestBody:
@@ -111,8 +111,8 @@ WineEditable:
       format: int64
 
   get:
-    summary: Get a single wine.
-    description: Get a single wine.
+    summary: Is wine editable?
+    description: Does the user have permission to edit the resource?
     operationId: isEditable
     tags: [wines-crud]
     responses:
