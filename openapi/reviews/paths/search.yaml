@@ -21,7 +21,7 @@ ReviewSearch:
   get:
     summary: Search reviews
     description: Search for reviews based on their author, date and rating.
-    operationId: search
+    operationId: reviewSearch
     tags: [reviews-search]
     responses:
       200:
@@ -41,7 +41,7 @@ ReviewSearchBest:
   get:
     summary: Get best reviews.
     description: Get best rated reviews. Number of reviews can be given as request parameter, default amount is 10.
-    operationId: searchBest
+    operationId: searchBestReview
     tags: [reviews-search]
     responses:
       200:
@@ -59,7 +59,7 @@ ReviewSearchNewest:
   get:
     summary: Get newest reviews.
     description: Get newest reviews. Number of reviews can be given as request parameter, default amount is 10.
-    operationId: searchNewest
+    operationId: searchNewestReview
     tags: [reviews-search]
     responses:
       200:
@@ -77,7 +77,7 @@ ReviewSearchWorst:
   get:
     summary: Get worst reviews.
     description: Get worst rated reviews. Number of reviews can be given as request parameter, default amount is 10.
-    operationId: searchNewest
+    operationId: searchWorstReview
     tags: [reviews-search]
     responses:
       200:

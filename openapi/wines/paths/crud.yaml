@@ -2,7 +2,7 @@ Wines:
   get:
     summary: Get all wines.
     description: Returns all wines ordered alphabetically by name.
-    operationId: findAll
+    operationId: getWines
     tags: [wines-crud]
     responses:
       200:
@@ -11,7 +11,7 @@ Wines:
   post:
     summary: Add new wine.
     description: Add new wine.
-    operationId: add
+    operationId: addWine
     tags: [wines-crud]
     requestBody:
       content:
@@ -40,7 +40,7 @@ Wine:
   get:
     summary: Get a single wine.
     description: Get a single wine.
-    operationId: find
+    operationId: findWine
     tags: [wines-crud]
     responses:
       200:
@@ -51,7 +51,7 @@ Wine:
   put:
     summary: Update wine.
     description: Update wine.
-    operationId: update
+    operationId: updateWine
     tags: [wines-crud]
     requestBody:
       content:
@@ -72,7 +72,7 @@ Wine:
   delete:
     summary: Delete wine.
     description: Delete wine.
-    operationId: delete
+    operationId: deleteWine
     tags: [wines-crud]
     responses:
       204:
@@ -95,7 +95,7 @@ WineEditable:
   get:
     summary: Is wine editable?
     description: Does the user have permission to edit the resource?
-    operationId: isEditable
+    operationId: isWineEditable
     tags: [wines-crud]
     responses:
       200:

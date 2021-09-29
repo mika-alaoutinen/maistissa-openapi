@@ -2,7 +2,7 @@ Reviews:
   get:
     summary: Get all reviews
     description: Returns all reviews in descending order by date.
-    operationId: findAll
+    operationId: getReviews
     tags: [reviews-crud]
     responses:
       200:
@@ -21,7 +21,7 @@ Review:
   get:
     summary: Get a single review.
     description: Get a single review.
-    operationId: find
+    operationId: findReview
     tags: [reviews-crud]
     responses:
       200:
@@ -32,7 +32,7 @@ Review:
   put:
     summary: Update review.
     description: Update review.
-    operationId: update
+    operationId: updateReview
     tags: [reviews-crud]
     requestBody:
       content:
@@ -52,7 +52,7 @@ Review:
   delete:
     summary: Delete review.
     description: Delete review.
-    operationId: delete
+    operationId: deleteReview
     tags: [reviews-crud]
     responses:
       204:
@@ -75,7 +75,7 @@ AddReview:
   post:
     summary: Add new review.
     description: Add new review. Must give Wine ID as path parameter to indicate the wine that the review is for.
-    operationId: add
+    operationId: addReview
     tags: [reviews-crud]
     requestBody:
       content:
@@ -103,7 +103,7 @@ ReviewEditable:
   get:
     summary: Is review editable?
     description: Does the user have permission to edit the resource?
-    operationId: isEditable
+    operationId: isReviewEditable
     tags: [reviews-crud]
     responses:
       200:

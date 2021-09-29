@@ -2,7 +2,7 @@ WinesCount:
   get:
     summary: Get wine count.
     description: Returns total count of wines in the application.
-    operationId: count
+    operationId: wineCount
     tags: [wines-info]
     responses:
       200:
@@ -55,7 +55,7 @@ ValidateName:
   get:
     summary: Validate wine's name.
     description: Check that wine's name is unique. TODO change to POST.
-    operationId: validateName
+    operationId: validateWineName
     tags: [wines-info]
     responses:
       200:

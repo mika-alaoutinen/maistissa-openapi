@@ -2,7 +2,7 @@ ReviewCount:
   get:
     summary: Get review count
     description: Returns total count of reviews in the application.
-    operationId: findAll
+    operationId: reviewCount
     tags: [reviews-info]
     responses:
       200:

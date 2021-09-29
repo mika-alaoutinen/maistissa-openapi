@@ -33,7 +33,7 @@
     "/reviews" : {
       "get" : {
         "description" : "Returns all reviews in descending order by date.",
-        "operationId" : "findAll",
+        "operationId" : "getReviews",
         "responses" : {
           "200" : {
             "content" : {
@@ -56,7 +56,7 @@
     "/reviews/{id}" : {
       "delete" : {
         "description" : "Delete review.",
-        "operationId" : "delete",
+        "operationId" : "deleteReview",
         "responses" : {
           "204" : {
             "description" : "Successfully deleted review."
@@ -87,7 +87,7 @@
       },
       "get" : {
         "description" : "Get a single review.",
-        "operationId" : "find",
+        "operationId" : "findReview",
         "responses" : {
           "200" : {
             "content" : {
@@ -125,7 +125,7 @@
       } ],
       "put" : {
         "description" : "Update review.",
-        "operationId" : "update",
+        "operationId" : "updateReview",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -194,7 +194,7 @@
       } ],
       "post" : {
         "description" : "Add new review. Must give Wine ID as path parameter to indicate the wine that the review is for.",
-        "operationId" : "add",
+        "operationId" : "addReview",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -243,7 +243,7 @@
     "/reviews/{id}/editable" : {
       "get" : {
         "description" : "Does the user have permission to edit the resource?",
-        "operationId" : "isEditable",
+        "operationId" : "isReviewEditable",
         "responses" : {
           "200" : {
             "content" : {
@@ -283,7 +283,7 @@
     "/reviews/wine/name/{wineName}" : {
       "get" : {
         "description" : "Get all reviews for a certain wine. Search by wine name.",
-        "operationId" : "findByWineName",
+        "operationId" : "findReviewByWineName",
         "responses" : {
           "200" : {
             "content" : {
@@ -315,7 +315,7 @@
     "/reviews/wine/id/{wineId}" : {
       "get" : {
         "description" : "Get all reviews for a certain wine. Search by wine ID.",
-        "operationId" : "findByWineId",
+        "operationId" : "findReviewByWineId",
         "responses" : {
           "200" : {
             "content" : {
@@ -348,7 +348,7 @@
     "/reviews/count" : {
       "get" : {
         "description" : "Returns total count of reviews in the application.",
-        "operationId" : "findAll",
+        "operationId" : "reviewCount",
         "responses" : {
           "200" : {
             "content" : {
@@ -368,7 +368,7 @@
     "/reviews/search" : {
       "get" : {
         "description" : "Search for reviews based on their author, date and rating.",
-        "operationId" : "search",
+        "operationId" : "reviewSearch",
         "responses" : {
           "200" : {
             "content" : {
@@ -415,7 +415,7 @@
     "/reviews/search/best" : {
       "get" : {
         "description" : "Get best rated reviews. Number of reviews can be given as request parameter, default amount is 10.",
-        "operationId" : "searchBest",
+        "operationId" : "searchBestReview",
         "responses" : {
           "200" : {
             "content" : {
@@ -447,7 +447,7 @@
     "/reviews/search/newest" : {
       "get" : {
         "description" : "Get newest reviews. Number of reviews can be given as request parameter, default amount is 10.",
-        "operationId" : "searchNewest",
+        "operationId" : "searchNewestReview",
         "responses" : {
           "200" : {
             "content" : {
@@ -479,7 +479,7 @@
     "/reviews/search/worst" : {
       "get" : {
         "description" : "Get worst rated reviews. Number of reviews can be given as request parameter, default amount is 10.",
-        "operationId" : "searchNewest",
+        "operationId" : "searchWorstReview",
         "responses" : {
           "200" : {
             "content" : {
@@ -511,7 +511,7 @@
     "/wines" : {
       "get" : {
         "description" : "Returns all wines ordered alphabetically by name.",
-        "operationId" : "findAll",
+        "operationId" : "getWines",
         "responses" : {
           "200" : {
             "content" : {
@@ -532,7 +532,7 @@
       },
       "post" : {
         "description" : "Add new wine.",
-        "operationId" : "add",
+        "operationId" : "addWine",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -582,7 +582,7 @@
     "/wines/{id}" : {
       "delete" : {
         "description" : "Delete wine.",
-        "operationId" : "delete",
+        "operationId" : "deleteWine",
         "responses" : {
           "204" : {
             "description" : "Successfully deleted wine."
@@ -613,7 +613,7 @@
       },
       "get" : {
         "description" : "Get a single wine.",
-        "operationId" : "find",
+        "operationId" : "findWine",
         "responses" : {
           "200" : {
             "content" : {
@@ -651,7 +651,7 @@
       } ],
       "put" : {
         "description" : "Update wine.",
-        "operationId" : "update",
+        "operationId" : "updateWine",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -711,7 +711,7 @@
     "/wines/{id}/editable" : {
       "get" : {
         "description" : "Does the user have permission to edit the resource?",
-        "operationId" : "isEditable",
+        "operationId" : "isWineEditable",
         "responses" : {
           "200" : {
             "content" : {
@@ -751,7 +751,7 @@
     "/wines/count" : {
       "get" : {
         "description" : "Returns total count of wines in the application.",
-        "operationId" : "count",
+        "operationId" : "wineCount",
         "responses" : {
           "200" : {
             "content" : {
@@ -840,7 +840,7 @@
     "/wines/validate" : {
       "get" : {
         "description" : "Check that wine's name is unique. TODO change to POST.",
-        "operationId" : "validateName",
+        "operationId" : "validateWineName",
         "responses" : {
           "200" : {
             "content" : {
@@ -870,7 +870,7 @@
     "/wines/search" : {
       "get" : {
         "description" : "Search for wines based on their name, type, countries, volumes and prices.",
-        "operationId" : "search",
+        "operationId" : "wineSearch",
         "responses" : {
           "200" : {
             "content" : {

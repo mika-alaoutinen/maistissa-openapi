@@ -42,7 +42,7 @@ WineSearch:
   get:
     summary: Search wines.
     description: Search for wines based on their name, type, countries, volumes and prices.
-    operationId: search
+    operationId: wineSearch
     tags: [wines-search]
     responses:
       200:
