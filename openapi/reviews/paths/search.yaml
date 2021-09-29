@@ -7,12 +7,14 @@ ReviewSearch:
       type: string
   - in: query
     name: dateRange
-    description: Date range for reviews.
+    description: Month range for reviews.
+    examples:
+      validRange:
+        value: [2020-01, 2020-02]
     schema:
       type: array
       items:
         type: string
-        format: date
       minItems: 0
       maxItems: 2
   - in: query
