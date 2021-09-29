@@ -83,7 +83,7 @@ AddReview:
           schema:
             $ref: ../schemas.yaml#/Review
     responses:
-      200:
+      201:
         $ref: ../responses.yaml#/Review
       400:
         $ref: ../../common/errors.yaml#/BadRequest
