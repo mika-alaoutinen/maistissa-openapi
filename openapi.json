@@ -395,12 +395,16 @@
           "type" : "string"
         }
       }, {
-        "description" : "Date range for reviews.",
+        "description" : "Month range for reviews.",
+        "examples" : {
+          "validRange" : {
+            "value" : [ "2020-01", "2020-02" ]
+          }
+        },
         "in" : "query",
         "name" : "dateRange",
         "schema" : {
           "items" : {
-            "format" : "date",
             "type" : "string"
           },
           "maxItems" : 2,
