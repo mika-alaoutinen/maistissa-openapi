@@ -399,16 +399,26 @@
         "in" : "query",
         "name" : "dateRange",
         "schema" : {
-          "format" : "date",
-          "type" : "string"
+          "items" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "maxItems" : 2,
+          "minItems" : 0,
+          "type" : "array"
         }
       }, {
         "description" : "Rating range for reviews.",
         "in" : "query",
         "name" : "ratingRange",
         "schema" : {
-          "format" : "float",
-          "type" : "number"
+          "items" : {
+            "format" : "float",
+            "type" : "number"
+          },
+          "maxItems" : 2,
+          "minItems" : 0,
+          "type" : "array"
         }
       } ]
     },
@@ -912,7 +922,7 @@
           "items" : {
             "type" : "string"
           },
-          "minLength" : 1,
+          "minItems" : 0,
           "type" : "array"
         }
       }, {
