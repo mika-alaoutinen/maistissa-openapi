@@ -9,14 +9,22 @@ ReviewSearch:
     name: dateRange
     description: Date range for reviews.
     schema:
-      type: string
-      format: date
+      type: array
+      items:
+        type: string
+        format: date
+      minItems: 0
+      maxItems: 2
   - in: query
     name: ratingRange
     description: Rating range for reviews.
     schema:
-      type: number
-      format: float
+      type: array
+      items:
+        type: number
+        format: float
+      minItems: 0
+      maxItems: 2
 
   get:
     summary: Search reviews
