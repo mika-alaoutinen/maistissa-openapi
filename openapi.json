@@ -413,7 +413,7 @@
         "name" : "ratingRange",
         "schema" : {
           "items" : {
-            "format" : "float",
+            "format" : "double",
             "type" : "number"
           },
           "maxItems" : 2,

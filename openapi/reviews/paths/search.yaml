@@ -22,7 +22,7 @@ ReviewSearch:
       type: array
       items:
         type: number
-        format: float
+        format: double
       minItems: 0
       maxItems: 2
 
