@@ -48,6 +48,8 @@ Review:
         $ref: ../../common/errors.yaml#/Unauthorized
       404:
         $ref: ../../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
 
   delete:
     summary: Delete review.
@@ -61,6 +63,8 @@ Review:
         $ref: ../../common/errors.yaml#/Unauthorized
       404:
         $ref: ../../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
 
 AddReview:
   parameters:
@@ -89,6 +93,8 @@ AddReview:
         $ref: ../../common/errors.yaml#/BadRequest
       401:
         $ref: ../../common/errors.yaml#/Unauthorized
+    security:
+    - bearerAuth: []
 
 ReviewEditable:
   parameters:

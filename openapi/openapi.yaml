@@ -86,3 +86,8 @@ components:
       $ref: ./reviews/schemas.yaml#/Review
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
