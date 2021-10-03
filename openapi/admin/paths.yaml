@@ -30,16 +30,36 @@ UserById:
 
   get:
     summary: Get user by ID.
-    description: Returns a single user by id
+    description: Returns a single user by id.
     operationId: findUserById
     tags: [admin]
     responses:
       200:
-        description: A single user.
-        content:
-          application/json:
-            schema:
-              $ref: ../user/schemas.yaml#/User
+        $ref: ./responses.yaml#/User
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
+
+UserByUsername:
+  parameters:
+  - in: path
+    name: username
+    description: User's username.
+    required: true
+    schema:
+      type: string
+
+  get:
+    summary: Get user by username.
+    description: Returns a single user by username.
+    operationId: findUserByUsername
+    tags: [admin]
+    responses:
+      200:
+        $ref: ./responses.yaml#/User
       401:
         $ref: ../common/errors.yaml#/Unauthorized
       404:

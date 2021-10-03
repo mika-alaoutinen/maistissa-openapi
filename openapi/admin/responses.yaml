@@ -1,0 +1,6 @@
+User:
+  description: Fetched a single user.
+  content:
+    application/json:
+      schema:
+        $ref: ../user/schemas.yaml#/User
