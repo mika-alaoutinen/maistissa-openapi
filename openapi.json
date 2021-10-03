@@ -848,7 +848,8 @@
                   "type" : "string"
                 }
               }
-            }
+            },
+            "description" : "User's username or empty string."
           }
         },
         "summary" : "Get username.",
@@ -867,7 +868,8 @@
                   "type" : "boolean"
                 }
               }
-            }
+            },
+            "description" : "Boolean indicating if user is logged in."
           }
         },
         "summary" : "Check if user is logged in.",

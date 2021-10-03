@@ -6,6 +6,7 @@ Username:
     tags: [user-info]
     responses:
       200:
+        description: User's username or empty string.
         content:
           application/json:
             schema:
@@ -19,6 +20,7 @@ LoggedIn:
     tags: [user-info]
     responses:
       200:
+        description: Boolean indicating if user is logged in.
         content:
           application/json:
             schema:
