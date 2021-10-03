@@ -35,6 +35,8 @@ paths:
     $ref: ./admin/paths.yaml#/UserById
   /admin/users/username/{username}:
     $ref: ./admin/paths.yaml#/UserByUsername
+  /admin/users/{id}/roles:
+    $ref: ./admin/paths.yaml#/UpdateRoles
 
   # Authentication
   /auth/login:

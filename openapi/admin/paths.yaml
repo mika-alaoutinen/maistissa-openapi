@@ -66,3 +66,38 @@ UserByUsername:
         $ref: ../common/errors.yaml#/NotFound
     security:
     - bearerAuth: []
+
+UpdateRoles:
+  parameters:
+  - in: path
+    name: id
+    description: User ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  put:
+    summary: Update user's roles.
+    description: Replace user's old roles with roles given in request body.
+    operationId: updateRoles
+    tags: [admin]
+    requestBody:
+      description: Set of new roles.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [ROLE_GUEST, ROLE_USER, ROLE_ADMIN]
+            uniqueItems: true
+    responses:
+      200:
+        $ref: ./responses.yaml#/User
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
