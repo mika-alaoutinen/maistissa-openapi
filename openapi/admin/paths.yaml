@@ -35,7 +35,7 @@ UserById:
     tags: [admin]
     responses:
       200:
-        $ref: ./responses.yaml#/User
+        $ref: responses.yaml#/UserResponse
       401:
         $ref: ../common/errors.yaml#/Unauthorized
       404:
@@ -59,7 +59,7 @@ UserByUsername:
     tags: [admin]
     responses:
       200:
-        $ref: ./responses.yaml#/User
+        $ref: responses.yaml#/UserResponse
       401:
         $ref: ../common/errors.yaml#/Unauthorized
       404:
@@ -94,7 +94,7 @@ UpdateRoles:
             uniqueItems: true
     responses:
       200:
-        $ref: ./responses.yaml#/User
+        $ref: responses.yaml#/UserResponse
       401:
         $ref: ../common/errors.yaml#/Unauthorized
       404:
