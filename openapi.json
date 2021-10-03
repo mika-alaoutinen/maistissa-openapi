@@ -8,6 +8,9 @@
     "url" : "http://localhost:8082/api"
   } ],
   "tags" : [ {
+    "description" : "Authentication operations. Only authenticated users are allowed to edit resources.",
+    "name" : "authentication"
+  }, {
     "description" : "CRUD operations for reviews.",
     "name" : "reviews-crud"
   }, {
@@ -30,6 +33,94 @@
     "name" : "wines-search"
   } ],
   "paths" : {
+    "/auth/login" : {
+      "post" : {
+        "description" : "Login with valid username and password. On successful login, API returns a JWT token.",
+        "operationId" : "login",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCredentials"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JwtToken"
+                }
+              }
+            },
+            "description" : "Valid JWT token"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
+          }
+        },
+        "summary" : "Login to receive JWT token.",
+        "tags" : [ "authentication" ]
+      }
+    },
+    "/auth/register" : {
+      "post" : {
+        "description" : "Register a new user with given username and password. User's default role is USER.",
+        "operationId" : "register",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCredentials"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            },
+            "description" : "Newly created user resource."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 400. Request body was malformed."
+          }
+        },
+        "summary" : "Register a new user.",
+        "tags" : [ "authentication" ]
+      }
+    },
     "/reviews" : {
       "get" : {
         "description" : "Returns all reviews in descending order by date.",
@@ -82,6 +173,9 @@
             "description" : "HTTP 404. Could not find resource with given id."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Delete review.",
         "tags" : [ "reviews-crud" ]
       },
@@ -177,6 +271,9 @@
             "description" : "HTTP 404. Could not find resource with given id."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Update review.",
         "tags" : [ "reviews-crud" ]
       }
@@ -236,6 +333,9 @@
             "description" : "HTTP 401. Request was unauthorized."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Add new review.",
         "tags" : [ "reviews-crud" ]
       }
@@ -589,6 +689,9 @@
             "description" : "HTTP 401. Request was unauthorized."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Add new wine.",
         "tags" : [ "wines-crud" ]
       }
@@ -622,6 +725,9 @@
             "description" : "HTTP 404. Could not find resource with given id."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Delete wine.",
         "tags" : [ "wines-crud" ]
       },
@@ -718,6 +824,9 @@
             "description" : "HTTP 404. Could not find resource with given id."
           }
         },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "summary" : "Update wine.",
         "tags" : [ "wines-crud" ]
       }
@@ -978,6 +1087,21 @@
         },
         "type" : "object"
       },
+      "JwtToken" : {
+        "description" : "A JWT resource with token string and type Bearer.",
+        "properties" : {
+          "token" : {
+            "format" : "jwt",
+            "type" : "string"
+          },
+          "type" : {
+            "default" : "Bearer",
+            "type" : "string"
+          }
+        },
+        "required" : [ "token", "type" ],
+        "type" : "object"
+      },
       "Review" : {
         "description" : "A review resource.",
         "properties" : {
@@ -1009,6 +1133,48 @@
           }
         },
         "required" : [ "author", "date", "id", "rating" ],
+        "type" : "object"
+      },
+      "User" : {
+        "description" : "A logged-in user with username and user roles.",
+        "properties" : {
+          "id" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "minLength" : 6,
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "roles" : {
+            "items" : {
+              "enum" : [ "ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN" ],
+              "minItems" : 1,
+              "type" : "string"
+            },
+            "type" : "array",
+            "uniqueItems" : true
+          }
+        },
+        "required" : [ "id", "password", "roles", "username" ],
+        "type" : "object"
+      },
+      "UserCredentials" : {
+        "description" : "User's login credentials with username and password.",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "minLength" : 6,
+            "type" : "string"
+          }
+        },
+        "required" : [ "password", "username" ],
         "type" : "object"
       },
       "Wine" : {
@@ -1065,6 +1231,13 @@
         },
         "required" : [ "country", "description", "foodPairings", "id", "name", "price", "type", "volume" ],
         "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "bearerFormat" : "JWT",
+        "scheme" : "bearer",
+        "type" : "http"
       }
     }
   }
