@@ -17,3 +17,32 @@ Users:
         $ref: ../common/errors.yaml#/Unauthorized
     security:
     - bearerAuth: []
+
+UserById:
+  parameters:
+  - in: path
+    name: id
+    description: User ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  get:
+    summary: Get user by ID.
+    description: Returns a single user by id
+    operationId: findUserById
+    tags: [admin]
+    responses:
+      200:
+        description: A single user.
+        content:
+          application/json:
+            schema:
+              $ref: ../user/schemas.yaml#/User
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []

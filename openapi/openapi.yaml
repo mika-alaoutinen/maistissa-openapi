@@ -31,6 +31,8 @@ paths:
   # Admin operations
   /admin/users:
     $ref: ./admin/paths.yaml#/Users
+  /admin/users/id/{id}:
+    $ref: ./admin/paths.yaml#/UserById
 
   # Authentication
   /auth/login:
