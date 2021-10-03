@@ -26,6 +26,8 @@ Wines:
         $ref: ../../common/errors.yaml#/BadRequest
       401:
         $ref: ../../common/errors.yaml#/Unauthorized
+    security:
+    - bearerAuth: []
 
 Wine:
   parameters:
@@ -68,6 +70,8 @@ Wine:
         $ref: ../../common/errors.yaml#/Unauthorized
       404:
         $ref: ../../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
 
   delete:
     summary: Delete wine.
@@ -81,6 +85,8 @@ Wine:
         $ref: ../../common/errors.yaml#/Unauthorized
       404:
         $ref: ../../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
 
 WineEditable:
   parameters:

@@ -8,6 +8,8 @@ servers:
   - url: http://localhost:8082/api
 
 tags:
+- name: authentication
+  description: Authentication operations. Only authenticated users are allowed to edit resources.
 - name: reviews-crud
   description: CRUD operations for reviews.
 - name: reviews-info
@@ -24,6 +26,12 @@ tags:
   description: Wine search operations.
 
 paths:
+  # Authentication
+  /auth/login:
+    $ref: ./authentication/paths.yaml#/Login
+  /auth/register:
+    $ref: ./authentication/paths.yaml#/Register
+
   # Review CRUD operations
   /reviews:
     $ref: ./reviews/paths/crud.yaml#/Reviews
@@ -82,7 +90,19 @@ components:
   schemas:
     ErrorBody:
       $ref: ./common/errors.yaml#/ErrorBody
+    JwtToken:
+      $ref: ./authentication/schemas.yaml#/JwtToken
     Review:
       $ref: ./reviews/schemas.yaml#/Review
+    User:
+      $ref: ./authentication/schemas.yaml#/User
+    UserCredentials:
+      $ref: ./authentication/schemas.yaml#/UserCredentials
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
