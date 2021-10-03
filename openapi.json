@@ -196,8 +196,7 @@
             "application/json" : {
               "schema" : {
                 "items" : {
-                  "enum" : [ "ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN" ],
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/Role"
                 },
                 "type" : "array",
                 "uniqueItems" : true
@@ -1347,6 +1346,11 @@
         "required" : [ "author", "date", "id", "rating" ],
         "type" : "object"
       },
+      "Role" : {
+        "description" : "User's role.",
+        "enum" : [ "ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN" ],
+        "type" : "string"
+      },
       "User" : {
         "description" : "A logged-in user with username and user roles.",
         "properties" : {
@@ -1364,9 +1368,7 @@
           },
           "roles" : {
             "items" : {
-              "enum" : [ "ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN" ],
-              "minItems" : 1,
-              "type" : "string"
+              "$ref" : "#/components/schemas/Role"
             },
             "type" : "array",
             "uniqueItems" : true

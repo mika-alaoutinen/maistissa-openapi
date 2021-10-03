@@ -19,7 +19,11 @@ User:
     roles:
       type: array
       items:
-        type: string
-        enum: ["ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN"]
+        $ref: schemas.yaml#/Role
         minItems: 1
       uniqueItems: true
+
+Role:
+  description: User's role.
+  type: string
+  enum: ["ROLE_GUEST", "ROLE_USER", "ROLE_ADMIN"]

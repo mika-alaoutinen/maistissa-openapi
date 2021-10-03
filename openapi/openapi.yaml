@@ -106,6 +106,8 @@ components:
       $ref: ./authentication/schemas.yaml#/JwtToken
     Review:
       $ref: ./reviews/schemas.yaml#/Review
+    Role:
+      $ref: ./user/schemas.yaml#/Role
     User:
       $ref: ./user/schemas.yaml#/User
     UserCredentials:

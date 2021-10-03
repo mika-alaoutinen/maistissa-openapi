@@ -89,8 +89,7 @@ UpdateRoles:
           schema:
             type: array
             items:
-              type: string
-              enum: [ROLE_GUEST, ROLE_USER, ROLE_ADMIN]
+              $ref: ../user/schemas.yaml#/Role
             uniqueItems: true
     responses:
       200:
