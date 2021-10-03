@@ -1,0 +1,27 @@
+Username:
+  get:
+    summary: Get username.
+    description: Returns username for the logged in user.
+    operationId: getUsername
+    tags: [user-info]
+    responses:
+      200:
+        description: User's username or empty string.
+        content:
+          application/json:
+            schema:
+              type: string
+
+LoggedIn:
+  get:
+    summary: Check if user is logged in.
+    description: Returns true if request has a valid JWT token in headers.
+    operationId: isLoggedIn
+    tags: [user-info]
+    responses:
+      200:
+        description: Boolean indicating if user is logged in.
+        content:
+          application/json:
+            schema:
+              type: boolean

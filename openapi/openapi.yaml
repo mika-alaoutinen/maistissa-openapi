@@ -20,6 +20,8 @@ tags:
   description: Operations for finding reviews of specific wines.
 - name: reviews-search
   description: Review search operations.
+- name: user-info
+  description: User's own information. Shown when user is logged in.
 - name: wines-crud
   description: CRUD operations for wines.
 - name: wines-info
@@ -74,6 +76,12 @@ paths:
   /reviews/search/worst:
     $ref: ./reviews/paths/search.yaml#/ReviewSearchWorst
 
+  # User info
+  /users/username:
+    $ref: ./user/paths.yaml#/Username
+  /users/loggedIn:
+    $ref: ./user/paths.yaml#/LoggedIn
+  
   # Wine CRUD operations
   /wines:
     $ref: ./wines/paths/crud.yaml#/Wines
