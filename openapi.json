@@ -26,6 +26,9 @@
     "description" : "Review search operations.",
     "name" : "reviews-search"
   }, {
+    "description" : "User's own information. Shown when user is logged in.",
+    "name" : "user-info"
+  }, {
     "description" : "CRUD operations for wines.",
     "name" : "wines-crud"
   }, {
@@ -832,6 +835,44 @@
           "type" : "integer"
         }
       } ]
+    },
+    "/users/username" : {
+      "get" : {
+        "description" : "Returns username for the logged in user.",
+        "operationId" : "getUsername",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Get username.",
+        "tags" : [ "user-info" ]
+      }
+    },
+    "/users/loggedIn" : {
+      "get" : {
+        "description" : "Returns true if request has a valid JWT token in headers.",
+        "operationId" : "isLoggedIn",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Check if user is logged in.",
+        "tags" : [ "user-info" ]
+      }
     },
     "/wines" : {
       "get" : {
