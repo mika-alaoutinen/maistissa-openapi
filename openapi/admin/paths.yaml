@@ -1,0 +1,103 @@
+Users:
+  get:
+    summary: Get all registered users.
+    description: Returns all registered users.
+    operationId: getUsers
+    tags: [admin]
+    responses:
+      200:
+        description: List of all users.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../user/schemas.yaml#/User
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+    security:
+    - bearerAuth: []
+
+UserById:
+  parameters:
+  - in: path
+    name: id
+    description: User ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  get:
+    summary: Get user by ID.
+    description: Returns a single user by id.
+    operationId: findUserById
+    tags: [admin]
+    responses:
+      200:
+        $ref: responses.yaml#/UserResponse
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
+
+UserByUsername:
+  parameters:
+  - in: path
+    name: username
+    description: User's username.
+    required: true
+    schema:
+      type: string
+
+  get:
+    summary: Get user by username.
+    description: Returns a single user by username.
+    operationId: findUserByUsername
+    tags: [admin]
+    responses:
+      200:
+        $ref: responses.yaml#/UserResponse
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []
+
+UpdateRoles:
+  parameters:
+  - in: path
+    name: id
+    description: User ID.
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+  put:
+    summary: Update user's roles.
+    description: Replace user's old roles with roles given in request body.
+    operationId: updateRoles
+    tags: [admin]
+    requestBody:
+      description: Set of new roles.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [ROLE_GUEST, ROLE_USER, ROLE_ADMIN]
+            uniqueItems: true
+    responses:
+      200:
+        $ref: responses.yaml#/UserResponse
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
+    security:
+    - bearerAuth: []

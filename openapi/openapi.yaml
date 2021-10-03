@@ -8,6 +8,8 @@ servers:
   - url: http://localhost:8082/api
 
 tags:
+- name: admin
+  description: Operations available only for admin users.
 - name: authentication
   description: Authentication operations. Only authenticated users are allowed to edit resources.
 - name: reviews-crud
@@ -26,6 +28,16 @@ tags:
   description: Wine search operations.
 
 paths:
+  # Admin operations
+  /admin/users:
+    $ref: ./admin/paths.yaml#/Users
+  /admin/users/id/{id}:
+    $ref: ./admin/paths.yaml#/UserById
+  /admin/users/username/{username}:
+    $ref: ./admin/paths.yaml#/UserByUsername
+  /admin/users/{id}/roles:
+    $ref: ./admin/paths.yaml#/UpdateRoles
+
   # Authentication
   /auth/login:
     $ref: ./authentication/paths.yaml#/Login
@@ -95,7 +107,7 @@ components:
     Review:
       $ref: ./reviews/schemas.yaml#/Review
     User:
-      $ref: ./authentication/schemas.yaml#/User
+      $ref: ./user/schemas.yaml#/User
     UserCredentials:
       $ref: ./authentication/schemas.yaml#/UserCredentials
     Wine:

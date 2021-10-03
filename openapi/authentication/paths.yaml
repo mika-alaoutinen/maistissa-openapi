@@ -38,6 +38,6 @@ Register:
         content:
           application/json:
             schema:
-              $ref: ./schemas.yaml#/User
+              $ref: ../user/schemas.yaml#/User
       400:
         $ref: ../common/errors.yaml#/BadRequest
