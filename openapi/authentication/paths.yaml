@@ -1,0 +1,22 @@
+Login:
+  post:
+    summary: Login to receive JWT token.
+    description: Login with valid username and password. On successful login, API returns a JWT token.
+    operationId: login
+    tags: [authentication]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/UserCredentials
+    responses:
+      200:
+        description: Valid JWT token
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/JwtToken
+      401:
+        $ref: ../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../common/errors.yaml#/NotFound
