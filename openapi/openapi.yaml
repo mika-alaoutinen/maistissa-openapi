@@ -29,6 +29,8 @@ paths:
   # Authentication
   /auth/login:
     $ref: ./authentication/paths.yaml#/Login
+  /auth/register:
+    $ref: ./authentication/paths.yaml#/Register
 
   # Review CRUD operations
   /reviews:
@@ -98,6 +100,7 @@ components:
       $ref: ./authentication/schemas.yaml#/UserCredentials
     Wine:
       $ref: ./wines/schemas.yaml#/Wine
+
   securitySchemes:
     bearerAuth:
       type: http

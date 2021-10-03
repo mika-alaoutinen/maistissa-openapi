@@ -20,3 +20,24 @@ Login:
         $ref: ../common/errors.yaml#/Unauthorized
       404:
         $ref: ../common/errors.yaml#/NotFound
+
+Register:
+  post:
+    summary: Register a new user.
+    description: Register a new user with given username and password. User's default role is USER.
+    operationId: register
+    tags: [authentication]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/UserCredentials
+    responses:
+      200:
+        description: Newly created user resource.
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas.yaml#/User
+      400:
+        $ref: ../common/errors.yaml#/BadRequest
