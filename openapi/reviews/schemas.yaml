@@ -1,16 +1,11 @@
-Review:
-  description: A review resource.
+NewReview:
+  description: A new review resource without ID.
   type: object
   required:
-  - id
   - author
   - date
   - rating
   properties:
-    id:
-      type: integer
-      format: int64
-      minimum: 1
     author:
       type: string
       minLength: 1
@@ -27,3 +22,16 @@ Review:
       maximum: 5
     wine:
       $ref: ../wines/schemas.yaml#/Wine
+
+Review:
+  allOf:
+  - $ref: "#/NewReview"
+  - type: object
+    description: A persisted review resource.
+    required:
+    - id
+    properties:
+      id:
+        type: integer
+        format: int64
+        minimum: 1

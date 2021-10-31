@@ -17,7 +17,7 @@ Wines:
       content:
         application/json:
           schema:
-            $ref: ../schemas.yaml#/Wine
+            $ref: ../schemas.yaml#/NewWine
       required: true
     responses:
       201:

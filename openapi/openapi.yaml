@@ -112,6 +112,10 @@ components:
       $ref: ./common/errors.yaml#/ErrorBody
     JwtToken:
       $ref: ./authentication/schemas.yaml#/JwtToken
+    NewReview:
+      $ref: ./reviews/schemas.yaml#/NewReview
+    NewWine:
+      $ref: ./wines/schemas.yaml#/NewWine
     Review:
       $ref: ./reviews/schemas.yaml#/Review
     Role:
