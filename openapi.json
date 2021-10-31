@@ -510,7 +510,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Review"
+                "$ref" : "#/components/schemas/NewReview"
               }
             }
           }
@@ -905,7 +905,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Wine"
+                "$ref" : "#/components/schemas/NewWine"
               }
             }
           },
@@ -1356,14 +1356,9 @@
         "required" : [ "token", "type" ],
         "type" : "object"
       },
-      "Review" : {
-        "description" : "A review resource.",
+      "NewReview" : {
+        "description" : "A new review resource without ID.",
         "properties" : {
-          "id" : {
-            "format" : "int64",
-            "minimum" : 1,
-            "type" : "integer"
-          },
           "author" : {
             "minLength" : 1,
             "type" : "string"
@@ -1386,8 +1381,65 @@
             "$ref" : "#/components/schemas/Wine"
           }
         },
-        "required" : [ "author", "date", "id", "rating" ],
+        "required" : [ "author", "date", "rating" ],
         "type" : "object"
+      },
+      "NewWine" : {
+        "description" : "A new wine resource without id.",
+        "properties" : {
+          "name" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "RED", "ROSE", "WHITE", "SPARKLING", "OTHER" ],
+            "type" : "string"
+          },
+          "country" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "price" : {
+            "format" : "double",
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "volume" : {
+            "format" : "double",
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "description" : {
+            "description" : "Wine's description contains a list of keywords or phrases.",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 0,
+            "type" : "array"
+          },
+          "foodPairings" : {
+            "description" : "Food pairing recommendations.",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 0,
+            "type" : "array"
+          },
+          "url" : {
+            "description" : "Link to external resource about the wine.",
+            "format" : "url",
+            "type" : "string"
+          }
+        },
+        "required" : [ "country", "description", "foodPairings", "name", "price", "type", "volume" ],
+        "type" : "object"
+      },
+      "Review" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewReview"
+        }, {
+          "$ref" : "#/components/schemas/Review_allOf"
+        } ]
       },
       "Role" : {
         "description" : "User's role.",
@@ -1435,58 +1487,34 @@
         "type" : "object"
       },
       "Wine" : {
-        "description" : "A wine resource.",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewWine"
+        }, {
+          "$ref" : "#/components/schemas/Wine_allOf"
+        } ]
+      },
+      "Review_allOf" : {
+        "description" : "A persisted review resource.",
         "properties" : {
           "id" : {
             "format" : "int64",
             "minimum" : 1,
             "type" : "integer"
-          },
-          "name" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "type" : {
-            "enum" : [ "RED", "ROSE", "WHITE", "SPARKLING", "OTHER" ],
-            "type" : "string"
-          },
-          "country" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "price" : {
-            "format" : "double",
-            "minimum" : 0,
-            "type" : "number"
-          },
-          "volume" : {
-            "format" : "double",
-            "minimum" : 0,
-            "type" : "number"
-          },
-          "description" : {
-            "description" : "Wine's description contains a list of keywords or phrases.",
-            "items" : {
-              "type" : "string"
-            },
-            "minLength" : 0,
-            "type" : "array"
-          },
-          "foodPairings" : {
-            "description" : "Food pairing recommendations.",
-            "items" : {
-              "type" : "string"
-            },
-            "minLength" : 0,
-            "type" : "array"
-          },
-          "url" : {
-            "description" : "Link to external resource about the wine.",
-            "format" : "url",
-            "type" : "string"
           }
         },
-        "required" : [ "country", "description", "foodPairings", "id", "name", "price", "type", "volume" ],
+        "required" : [ "id" ],
+        "type" : "object"
+      },
+      "Wine_allOf" : {
+        "description" : "A persisted wine resource.",
+        "properties" : {
+          "id" : {
+            "format" : "int64",
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "id" ],
         "type" : "object"
       }
     },
