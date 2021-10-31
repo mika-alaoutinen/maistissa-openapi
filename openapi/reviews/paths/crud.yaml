@@ -85,7 +85,7 @@ AddReview:
       content:
         application/json:
           schema:
-            $ref: ../schemas.yaml#/Review
+            $ref: ../schemas.yaml#/NewReview
     responses:
       201:
         $ref: ../responses.yaml#/Review

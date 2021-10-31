@@ -1,8 +1,7 @@
-Wine:
-  description: A wine resource.
+NewWine:
+  description: A new wine resource without id.
   type: object
   required:
-  - id
   - name
   - type
   - country
@@ -11,10 +10,6 @@ Wine:
   - description
   - foodPairings
   properties:
-    id:
-      type: integer
-      format: int64
-      minimum: 1
     name:
       type: string
       minLength: 1
@@ -47,4 +42,17 @@ Wine:
     url:
       description: Link to external resource about the wine.
       type: string
-      format: url
+      format: url  
+
+Wine:
+  allOf:
+  - $ref: "#/NewWine"
+  - type: object
+    description: A persisted wine resource.
+    required:
+    - id
+    properties:
+      id:
+        type: integer
+        format: int64
+        minimum: 1
