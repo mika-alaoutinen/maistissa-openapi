@@ -20,8 +20,6 @@ NewReview:
       format: double
       minimum: 0
       maximum: 5
-    wine:
-      $ref: ../wines/schemas.yaml#/Wine
 
 Review:
   allOf:
@@ -30,8 +28,11 @@ Review:
     description: A persisted review resource.
     required:
     - id
+    - wine
     properties:
       id:
         type: integer
         format: int64
         minimum: 1
+      wine:
+        $ref: ../wines/schemas.yaml#/Wine

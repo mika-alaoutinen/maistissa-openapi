@@ -1376,9 +1376,6 @@
             "maximum" : 5,
             "minimum" : 0,
             "type" : "number"
-          },
-          "wine" : {
-            "$ref" : "#/components/schemas/Wine"
           }
         },
         "required" : [ "author", "date", "rating" ],
@@ -1500,9 +1497,12 @@
             "format" : "int64",
             "minimum" : 1,
             "type" : "integer"
+          },
+          "wine" : {
+            "$ref" : "#/components/schemas/Wine"
           }
         },
-        "required" : [ "id" ],
+        "required" : [ "id", "wine" ],
         "type" : "object"
       },
       "Wine_allOf" : {
