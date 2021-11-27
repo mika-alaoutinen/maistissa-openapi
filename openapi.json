@@ -1335,6 +1335,9 @@
           "error" : {
             "type" : "string"
           },
+          "message" : {
+            "type" : "string"
+          },
           "path" : {
             "type" : "string"
           }
