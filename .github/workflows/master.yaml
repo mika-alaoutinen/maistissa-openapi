@@ -8,8 +8,8 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build openapi.json
+  update-schema:
+    name: Update openapi.json
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
