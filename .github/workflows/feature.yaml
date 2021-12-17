@@ -1,0 +1,15 @@
+# Builds the openapi.json schema by using Docker Compose
+name: Feature branch workflow
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    name: Build openapi.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker-compose up

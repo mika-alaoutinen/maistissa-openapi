@@ -1,0 +1,20 @@
+# Builds the openapi.json schema by using Docker Compose
+# and pushes it to the master branch.
+name: Master branch workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-schema:
+    name: Update openapi.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker-compose up
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automatically update openapi.json
+          file_pattern: openapi.json
