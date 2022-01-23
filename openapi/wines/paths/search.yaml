@@ -27,7 +27,7 @@ WineSearch:
       items:
         type: number
         format: double
-      minimum: 0
+        exclusiveMinimum: 0
   - in: query
     name: priceRange
     description: Desired price range, given as [min, max]. Must have exactly two values.
@@ -36,8 +36,9 @@ WineSearch:
       items:
         type: number
         format: double
-      minimum: 2
-      maximum: 2
+        minimum: 0
+      minItems: 2
+      maxItems: 2
 
   get:
     summary: Search wines.
