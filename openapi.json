@@ -1298,10 +1298,10 @@
         "name" : "volumes",
         "schema" : {
           "items" : {
+            "exclusiveMinimum" : false,
             "format" : "double",
             "type" : "number"
           },
-          "minimum" : 0,
           "type" : "array"
         }
       }, {
@@ -1311,10 +1311,11 @@
         "schema" : {
           "items" : {
             "format" : "double",
+            "minimum" : 0,
             "type" : "number"
           },
-          "maximum" : 2,
-          "minimum" : 2,
+          "maxItems" : 2,
+          "minItems" : 2,
           "type" : "array"
         }
       } ]
