@@ -39,6 +39,7 @@ Review:
         application/json:
           schema:
             $ref: ../schemas.yaml#/Review
+      required: true
     responses:
       200:
         $ref: ../responses.yaml#/Review
@@ -86,6 +87,7 @@ AddReview:
         application/json:
           schema:
             $ref: ../schemas.yaml#/NewReview
+      required: true
     responses:
       201:
         $ref: ../responses.yaml#/Review

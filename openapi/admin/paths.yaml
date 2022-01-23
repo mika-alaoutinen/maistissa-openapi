@@ -91,6 +91,7 @@ UpdateRoles:
             items:
               $ref: ../user/schemas.yaml#/Role
             uniqueItems: true
+      required: true
     responses:
       200:
         $ref: responses.yaml#/UserResponse
