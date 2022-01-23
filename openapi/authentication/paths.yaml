@@ -9,6 +9,7 @@ Login:
         application/json:
           schema:
             $ref: ./schemas.yaml#/UserCredentials
+      required: true
     responses:
       200:
         description: Valid JWT token
@@ -32,6 +33,7 @@ Register:
         application/json:
           schema:
             $ref: ./schemas.yaml#/UserCredentials
+      required: true
     responses:
       200:
         description: Newly created user resource.

@@ -206,7 +206,8 @@
               }
             }
           },
-          "description" : "Set of new roles."
+          "description" : "Set of new roles.",
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -258,7 +259,8 @@
                 "$ref" : "#/components/schemas/UserCredentials"
               }
             }
-          }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -307,7 +309,8 @@
                 "$ref" : "#/components/schemas/UserCredentials"
               }
             }
-          }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -441,7 +444,8 @@
                 "$ref" : "#/components/schemas/Review"
               }
             }
-          }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -513,7 +517,8 @@
                 "$ref" : "#/components/schemas/NewReview"
               }
             }
-          }
+          },
+          "required" : true
         },
         "responses" : {
           "201" : {
