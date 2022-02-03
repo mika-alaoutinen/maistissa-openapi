@@ -38,7 +38,7 @@ Review:
       content:
         application/json:
           schema:
-            $ref: ../schemas.yaml#/Review
+            $ref: ../schemas.yaml#/NewReview
       required: true
     responses:
       200:

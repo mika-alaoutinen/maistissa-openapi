@@ -441,7 +441,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Review"
+                "$ref" : "#/components/schemas/NewReview"
               }
             }
           },
