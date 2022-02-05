@@ -550,6 +550,16 @@
               }
             },
             "description" : "HTTP 401. Request was unauthorized."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "HTTP 404. Could not find resource with given id."
           }
         },
         "security" : [ {

@@ -95,6 +95,8 @@ AddReview:
         $ref: ../../common/errors.yaml#/BadRequest
       401:
         $ref: ../../common/errors.yaml#/Unauthorized
+      404:
+        $ref: ../../common/errors.yaml#/NotFound
     security:
     - bearerAuth: []
 
