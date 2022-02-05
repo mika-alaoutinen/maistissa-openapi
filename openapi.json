@@ -1035,7 +1035,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Wine"
+                "$ref" : "#/components/schemas/NewWine"
               }
             }
           },
