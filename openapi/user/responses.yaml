@@ -3,4 +3,4 @@ UserResponse:
   content:
     application/json:
       schema:
-        $ref: ../user/schemas.yaml#/User
+        $ref: ./schemas.yaml#/User
