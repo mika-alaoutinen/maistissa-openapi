@@ -1337,6 +1337,107 @@
     }
   },
   "components" : {
+    "responses" : {
+      "Unauthorized" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "HTTP 401. Request was unauthorized."
+      },
+      "UserResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/User"
+            }
+          }
+        },
+        "description" : "Fetched a single user."
+      },
+      "NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "HTTP 404. Could not find resource with given id."
+      },
+      "BadRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "HTTP 400. Request body was malformed."
+      },
+      "ReviewList" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "items" : {
+                "$ref" : "#/components/schemas/Review"
+              },
+              "type" : "array"
+            }
+          }
+        },
+        "description" : "Fetched a list of reviews."
+      },
+      "Review" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Review"
+            }
+          }
+        },
+        "description" : "Fetched a single review."
+      },
+      "WineList" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "items" : {
+                "$ref" : "#/components/schemas/Wine"
+              },
+              "type" : "array"
+            }
+          }
+        },
+        "description" : "Fetched a list of wines."
+      },
+      "Wine" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Wine"
+            }
+          }
+        },
+        "description" : "Fetched a single wine."
+      },
+      "StringList" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "items" : {
+                "type" : "string"
+              },
+              "type" : "array"
+            }
+          }
+        },
+        "description" : "Fetched a list of strings."
+      }
+    },
     "schemas" : {
       "ErrorBody" : {
         "description" : "A generic error response.",
@@ -1522,7 +1623,8 @@
           }
         },
         "required" : [ "id", "wine" ],
-        "type" : "object"
+        "type" : "object",
+        "example" : null
       },
       "Wine_allOf" : {
         "description" : "A persisted wine resource.",
@@ -1534,7 +1636,8 @@
           }
         },
         "required" : [ "id" ],
-        "type" : "object"
+        "type" : "object",
+        "example" : null
       }
     },
     "securitySchemes" : {
